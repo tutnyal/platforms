@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="54" viewBox="0 0 54 54">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_60555" data-name="Path 60555" d="M8.1,0H45.9A8.1,8.1,0,0,1,54,8.1V45.9A8.1,8.1,0,0,1,45.9,54H8.1A8.1,8.1,0,0,1,0,45.9V8.1A8.1,8.1,0,0,1,8.1,0Z" transform="translate(72 73)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.274" y1="0.073" x2="0.722" y2="0.919" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff7600"/>
+      <stop offset="1" stop-color="#fcdf00"/>
+    </linearGradient>
+  </defs>
+  <g id="Subtitle-CC-Icon" transform="translate(-73 -73)">
+    <g id="Mask_Group_165" data-name="Mask Group 165" transform="translate(1)" clip-path="url(#clip-path)">
+      <path id="Path_85211" data-name="Path 85211" d="M47.244,58.147H10.9A10.857,10.857,0,0,1,0,47.244V10.9A10.857,10.857,0,0,1,10.9,0H47.244a10.857,10.857,0,0,1,10.9,10.9V47.244a10.857,10.857,0,0,1-10.9,10.9Z" transform="translate(69.771 70.772)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" fill="url(#linear-gradient)"/>
+    </g>
+    <text id="CC" transform="translate(81 110)" fill="#fff" font-size="26" font-family="ArialRoundedMTBold, Arial Rounded MT Bold"><tspan x="0" y="0">CC</tspan></text>
+  </g>
+</svg>

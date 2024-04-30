@@ -1,0 +1,1136 @@
+.new_home_section {
+    /* background: transparent radial-gradient(closest-side at 1% 97%, #752996 0%, #752996 0%, #1D005C 38%, #571884 100%) 0% 0% no-repeat padding-box; */
+    background-image: linear-gradient(45deg, #752996 0%, #1D005C 48%, #571884 100%);
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    /* position:relative;
+    top: 65px; */
+    /* background-image: url(https://www.animaker.com/static/assets/images/animakerhome/header_top_bg.png), url(https://www.animaker.com/static/assets/images/animakerhome/header_bottom_bg.svg);
+    background-repeat: repeat-x,no-repeat;
+    background-position: top left, bottom;
+    background-size: 100% ,100%;
+    background-color: #E8F7FF; */
+}
+
+.new_home_wrapper {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/header_bottom_bg.svg);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.herosection_container {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/header_top_bg.png);
+    background-position: 0px 0px;
+    background-size: cover;
+    /* animation: animatedBackground 3s ease-in-out infinite alternate; */
+}
+
+/* @keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 100% 100%; }
+} */
+
+.wave_curve_bottom {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/wave_curve.svg);
+    background-position: bottom left;
+    background-size: 104%;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: -2px;
+}
+
+.ball1 {
+    position: absolute;
+    top: -300px;
+    left: 30%;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/ball2.svg);
+    width: 352px;
+    height: 371px;
+    z-index: 1000;
+}
+
+.ball2 {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/ball1.svg);
+    width: 74px;
+    height: 74px;
+}
+
+.doggy {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/dog-icon.svg);
+    width: 162px;
+    height: 199px;
+    animation: animateddogbackground 5s ease-in-out infinite alternate;
+}
+
+@keyframes animateddogbackground {
+    from {
+        top: 40%;
+    }
+    to {
+        top: 30%;
+    }
+}
+
+.maker {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/maker-icon.svg);
+    width: 240px;
+    height: 347px;
+    animation: animatedmakerbackground 5s ease-in-out infinite alternate;
+}
+
+@keyframes animatedmakerbackground {
+    from {
+        top: 20%;
+    }
+    to {
+        top: 30%;
+    }
+}
+
+.ball3 {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/ball3.svg);
+    width: 355px;
+    height: 229px;
+    z-index: -1;
+}
+
+@keyframes animatedball1backgroundup {
+    from {
+        top: -300px;
+    }
+    to {
+        top: -100px;
+    }
+}
+
+@keyframes animatedball2backgroundup {
+    from {
+        top: 30%;
+    }
+    to {
+        top: 20%;
+    }
+}
+
+@keyframes animatedball2backgroundup {
+    from {
+        bottom: 0px;
+    }
+    to {
+        bottom: 30px;
+    }
+}
+
+@keyframes animatedball1backgrounddown {
+    from {
+        top: -300px;
+    }
+    to {
+        top: -200px;
+    }
+}
+
+@keyframes animatedball2backgrounddown {
+    from {
+        top: 30%;
+    }
+    to {
+        top: 40%;
+    }
+}
+
+@keyframes animatedball3backgrounddown {
+    from {
+        bottom: 0px;
+    }
+    to {
+        bottom: -30px;
+    }
+}
+
+#animakerHeader {
+    /* background-color: #fff; */
+    padding: 0px 40px;
+    min-height: 65px;
+    margin: 0px;
+    /* border-bottom: 2px solid #F8F8F8; */
+    /* z-index: 999; */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    /* background: transparent radial-gradient(closest-side at 1% 97%, #752996 0%, #752996 0%, #1D005C 38%, #571884 100%) 0% 0% no-repeat padding-box;
+    opacity: 1; */
+}
+
+#animakerHeader.active {
+    background-color: #fff;
+    box-shadow: rgba(0, 12, 32, 0.04) 0px 0px 1px 0px, rgba(10, 31, 68, 0.04) 0px 16px 24px 0px;
+}
+
+.navbar-brand {
+    padding-top: .5rem;
+    padding-left: 7rem;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+#animakerHeader .animaker_tobuttons {
+    margin-left: auto;
+}
+
+.animaker_tobuttons ul {
+    list-style: none;
+    margin-right: 94px;
+    margin-top: 10px;
+}
+
+.animaker_tobuttons ul li {
+    display: inline-block;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.animaker_tobuttons ul li a {
+    font-size: 13px;
+    font-weight: 500;
+    color: #53627C !important;
+}
+
+.element_img {
+    text-align: center;
+    margin: 50px 0 0px 0;
+}
+
+.gOULTz {
+    display: inline-block;
+    /* position: re; */
+    /* border-radius: 10px; */
+    overflow: hidden;
+}
+
+.gOULTz video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 760.89px !important;
+    height: 428px !important;
+    z-index: 0;
+}
+
+.iqYDKW {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    pointer-events: none;
+}
+
+.banner-shape {
+    z-index: 2;
+}
+
+.iqYDKW svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.intro_text {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'PT Sans';
+}
+
+.intro_sub_text {
+    color: #72679B;
+    font-size: 21px;
+    font-family: 'PT Sans';
+    margin: 30px 0;
+}
+
+.herosection_content {
+    text-align: center;
+    padding: 180px 0 50px 0;
+}
+
+.herosection_content a {
+    width: 340px;
+    font-size: 18px;
+    font-weight: 600;
+    background: transparent linear-gradient(90deg, #AE0A62 0%, #F8AA43 100%) 0% 0% no-repeat padding-box;
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    opacity: 1;
+    font-family: 'PT Sans' !important;
+    box-shadow: 0 3px 6px #00000029;
+    margin: 0 auto;
+}
+
+.customers {
+    margin: 120px 0 80px 0;
+}
+
+.customers p {
+    font-family: 'PT Sans' !important;
+    color: #54536C;
+    font-size: 21px;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 40px;
+}
+
+.animation_liveaction {
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.animation_liveaction h3 {
+    color: #2D2D2D;
+    font-family: 'PT Sans' !important;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.animation_liveaction p {
+    color: #54536C;
+    font-family: 'PT Sans' !important;
+    font-size: 18px;
+}
+
+.animakerfeatureslist {
+    padding: 70px 0;
+}
+
+.animakerfeatures_mobile,
+.templates_mobile,
+.animaker_profeatures_mobile {
+    display: none;
+}
+
+.animakerfeatureslist h2 {
+    text-align: center;
+    color: #2D2D2D;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 35px;
+    font-family: 'PT Sans' !important;
+}
+
+.animakerfeatureslist h3 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2D2D2D;
+    font-family: 'PT Sans' !important;
+    margin-bottom: 20px;
+}
+
+.animakerfeatureslist p {
+    color: #54536C;
+    font-size: 21px;
+    font-family: 'PT Sans' !important;
+}
+
+.animakerfeatureslist .animakerfeature1,
+.animakerfeatureslist .animakerfeature2,
+.animakerfeatureslist .animakerfeature3 {
+    padding-top: 50px;
+}
+
+.animakertemplates {
+    padding: 70px 0;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+}
+
+.animakertemplates h3 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2D2D2D;
+    font-family: 'PT Sans' !important;
+    margin-bottom: 20px;
+}
+
+.animakertemplates p {
+    color: #54536C;
+    font-size: 21px;
+    font-family: 'PT Sans' !important;
+}
+
+.animation_profeatures {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.animation_profeatures h3 {
+    color: #2D2D2D;
+    font-family: 'PT Sans' !important;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.animation_profeatures p {
+    color: #54536C;
+    font-family: 'PT Sans' !important;
+    font-size: 18px;
+}
+
+.animaker_users_description {
+    background: url(https://www.animaker.com/static/assets/images/animakerhome/usersbackground.svg) no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    padding: 100px 0;
+    position: relative;
+}
+
+.mainDescriptionSection .animos_count #p1,
+.mainDescriptionSection .assets_count #p1,
+.mainDescriptionSection .users_count #p1 {
+    padding-top: 20px;
+    font-size: 50px;
+    font-weight: 600;
+    color: #ffcd00;
+}
+
+.mainDescriptionSection .animos_logo img,
+.mainDescriptionSection .assets_logo img,
+.mainDescriptionSection .users_logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.getStartedSection {
+    margin-top: 50px;
+}
+
+.getStartedSection a {
+    margin: 0 auto;
+    width: 380px;
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(270deg, #f57400 0, #e8e24a 100%) 0 0 no-repeat;
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    opacity: 1;
+    font-family: 'PT Sans' !important;
+    box-shadow: 0 3px 6px #00000029;
+}
+
+.mainDescriptionSection .animos_text #p2,
+.mainDescriptionSection .assets_text #p2,
+.mainDescriptionSection .users_text #p2 {
+    font-size: 18px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.custom_container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 15px
+}
+
+.animaker_users_description .mainDescriptionSection .animakerAnimosCreated,
+.animaker_users_description .mainDescriptionSection .animakerAssestsCollection,
+.animaker_users_description .mainDescriptionSection .animakerUsersCreated,
+.animaker_users_description .usersHeader {
+    text-align: center;
+}
+
+.tab_section {
+    margin: 100px 0 30px;
+}
+
+.tab_section .tab_desc#Entrepreneurs .bg_img {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/enterpreneurs_thumb.png);
+}
+
+.tab_section .tab_desc#Marketers .bg_img {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/marketer_thumb.png);
+}
+
+.tab_section .tab_desc#hrteam .bg_img {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/hr_thumb.png);
+}
+
+.tab_section .tab_desc#Storytellers .bg_img {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/storyteller_thumb.png);
+}
+
+.tab_section .tab_desc#Everyone .bg_img {
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/everyone_thumb.png);
+}
+
+.tab_section .tab_desc .bg_img {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 490px;
+    position: relative;
+    /* border-top-right-radius: 40px; */
+    /* border-bottom-left-radius: 40px; */
+    /* border-top-left-radius: 3px; */
+    /* border-bottom-right-radius: 3px; */
+}
+
+.tab_buttons ol li {
+    list-style-type: none;
+}
+
+.carousel-btn {
+    width: 19%;
+    display: inline-block;
+}
+
+.tab_buttons ol li .Entrepreneurs_tab {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/enterpreneurs_icon.svg);
+    cursor: pointer;
+}
+
+.tab_buttons ol li .Marketers_tab {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/marketer_icon.svg);
+    cursor: pointer;
+}
+
+.tab_buttons ol li .hrteam_tab {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/hr_icon.svg);
+    cursor: pointer;
+}
+
+.tab_buttons ol li .Storytellers_tab {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/storyteller_icon.svg);
+    cursor: pointer;
+}
+
+.tab_buttons ol li .Everyone_tab {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    background-image: url(https://www.animaker.com/static/assets/images/animakerhome/everyone_icon.svg);
+    cursor: pointer;
+}
+
+.tab_section h2 {
+    text-align: center;
+    color: #2D2D2D;
+    font-weight: bold;
+    margin-bottom: 50px;
+    font-size: 40px;
+    font-family: 'PT Sans' !important;
+}
+
+.tab_section p {
+    color: #fff;
+    font-family: 'PT Sans' !important;
+    font-size: 21px;
+}
+
+.tab_section h3 {
+    color: #fff;
+    font-family: 'PT Sans' !important;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 1.51);
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.41);
+    position: absolute;
+    transition: 0.2s ease all;
+    /* border-top-right-radius: 40px; */
+    /* border-bottom-left-radius: 40px; */
+    /* border-top-left-radius: 3px; */
+    /* border-bottom-right-radius: 3px; */
+}
+
+.overlay_text {
+    position: absolute;
+    left: 30px;
+    top: 35%;
+    text-align: left;
+}
+
+.testimony {
+    position: relative;
+    margin: 80px 0;
+    background-image: url(https://www.animaker.com/static_2.0/img/gifmaker/create-background-left.svg), url(https://www.animaker.com/static_2.0/img/gifmaker/create-background-right.svg);
+    background-position: left, right;
+    background-repeat: no-repeat;
+}
+
+.testimony .testimonial-slides {
+    margin: 80px 0;
+    text-align: center;
+}
+
+.testimony .testimonial-slides #myCarousel.double {
+    height: auto;
+}
+
+.testimony .testimonial-slides #myCarousel.double {
+    width: 70%;
+    margin: auto;
+    height: 200px;
+}
+
+.testimony .testimonial-slides .testimonial_set.carousel-inner {
+    width: 100%;
+    text-align: center;
+    float: none;
+    height: auto !important;
+}
+
+.testimony .testimonial-slides .testimonial_set {
+    display: block;
+    margin-top: 30px;
+}
+
+.testimony .testimonial-slides .testimonial_set.carousel-inner {
+    width: 100%;
+    text-align: center;
+    float: none;
+    height: auto !important
+}
+
+.testimony .testimonial-slides .testimonial_set .img-circle {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+}
+
+.testimony .testimonial-slides #myCarousel.double {
+    height: auto;
+}
+
+.testimony .testimonial-slides .testimonial_title {
+    color: #54536C;
+    font-family: 'PT Sans' !important;
+    font-size: 21px;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+.testimony .testimonial-slides .carousel-inner .testimonial p {
+    color: #2D2D2D;
+    font-family: 'PT Sans' !important;
+    font-size: 24px;
+}
+
+.testimonial-auth {
+    color: #2D2D2D;
+    font-size: 24px;
+    font-family: 'PT Sans' !important;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.testimonial-slides .carousel-inner {
+    height: auto !important
+}
+
+.testimony .testimonial-slides .carousel-indicators li.active {
+    background-color: #5b5bd6;
+    border-color: #5b5bd6;
+}
+
+.testimony .testimonial-slides .carousel-indicators {
+    bottom: -70px;
+}
+
+.testimony .testimonial-slides .carousel-indicators li {
+    border-color: #BDBBBC;
+    background-color: #BDBBBC;
+}
+
+.register_soon {
+    margin-bottom: 60px;
+}
+
+.register_soon h2 {
+    text-align: center;
+    color: #2D2D2D;
+    font-weight: bold;
+    margin-bottom: 50px;
+    font-size: 35px;
+    font-family: 'PT Sans' !important;
+}
+
+.register_soon a {
+    width: 380px;
+    font-size: 18px;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #503df9, #9e52f7);
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    opacity: .8;
+    font-family: 'PT Sans' !important;
+    box-shadow: 0 3px 6px #00000029;
+    margin: 0 auto;
+}
+
+.register_soon p {
+    text-align: center;
+    font-family: 'PT Sans' !important;
+    color: #54536C;
+    font-size: 18px;
+}
+
+.topuserslogo {
+    margin-top: 30px;
+    padding: 40px 0;
+    text-align: center;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+}
+
+.custom_container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 15px
+}
+
+/* footer style */
+
+#footerWrapper {
+    background: #2A2738;
+}
+
+.pt30 {
+    padding-top: 3em;
+}
+
+.custom_width {
+    max-width: 1030px;
+}
+
+.category_product {
+    font-size: 20px;
+    font-family: 'PT Sans';
+    color: #fff;
+}
+
+#footerWrapper ul li {
+    font-size: 16px;
+    font-family: 'PT Sans';
+}
+
+.footertxt ul {
+    padding-left: 0;
+}
+
+.footertxt ul li {
+    font-size: 14px;
+    line-height: 2em;
+    text-align: justify;
+    font-family: raleway-regular;
+    color: #7e838a;
+    list-style-type: none;
+}
+
+.footertxt ul li a,
+.footer_animaker a {
+    color: #777;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4 {
+    color: #F5811A;
+    margin-bottom: 40px;
+    font-size: 27px;
+    font-family: 'PT Sans';
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+.footer-copyright {
+    font-weight: 700;
+    font-size: 14px;
+    color: #4B4B65;
+    font-family: 'PT Sans';
+}
+
+.footer-bold {
+    color: #4B4B65;
+}
+
+.footer-color1 {
+    color: #fe7800;
+}
+
+.footer_animaker {
+    font-size: 14px;
+    line-height: 1.5em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.iconfacebook {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -9px -8px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconfacebook:hover {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -9px -49px no-repeat rgba(0, 0, 0, 0);
+}
+
+.icontwitter {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -44px -8px no-repeat rgba(0, 0, 0, 0);
+}
+
+.icontwitter:hover {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -44px -49px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconlinkedin {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -115px -9px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconlinkedin:hover {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -115px -49px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconyoutube {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -152px -10px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconyoutube:hover {
+    background: url(https://www.animaker.com/static/assets/images/footer-animaker-logo-new.png) -152px -49px no-repeat rgba(0, 0, 0, 0);
+}
+
+.iconfacebook,
+.icongoogle,
+.iconlinkedin,
+.icontwitter,
+.iconyoutube {
+    float: left;
+    height: 32px;
+    width: 32px;
+    display: block;
+}
+
+@media (max-width:1680px) {
+    .custom_container {
+        max-width: 1400px
+    }
+}
+
+@media (max-width:1440px) {
+    .custom_container {
+        max-width: 1200px
+    }
+    .ball2 {
+        left: 1%;
+    }
+    .doggy {
+        left: 7%;
+    }
+    .maker {
+        right: 1%;
+    }
+}
+
+@media (max-width:1366px) {
+    .custom_container {
+        max-width: 1140px
+    }
+}
+
+@media (max-width:1260px) {
+    .doggy,
+    .maker {
+        display: none;
+    }
+}
+
+@media (max-width:1226px) {
+    .custom_container {
+        max-width: 1024px
+    }
+    .topuserslogo img {
+        width: 100%;
+    }
+}
+
+@media (max-width:1024px) {
+    .custom_container {
+        max-width: 940px
+    }
+}
+
+@media (max-width:991px) {
+    .custom_container {
+        max-width: 800px
+    }
+    .animakerfeatures_mobile,
+    .templates_mobile,
+    .animaker_profeatures_mobile {
+        display: block;
+        text-align: center;
+    }
+    .animakerfeatures_desktop,
+    .templates_desktop,
+    .animaker_profeatures_desktop {
+        display: none;
+    }
+    .mainDescriptionSection .animos_count #p1,
+    .mainDescriptionSection .assets_count #p1,
+    .mainDescriptionSection .users_count #p1 {
+        font-size: 32px;
+    }
+    .mainDescriptionSection .animos_text #p2,
+    .mainDescriptionSection .assets_text #p2,
+    .mainDescriptionSection .users_text #p2 {
+        font-size: 18px;
+        color: #fff;
+    }
+    .tab_section .tab_desc .bg_img {
+        height: 450px;
+    }
+    .wave_curve_bottom {
+        background-image: unset;
+    }
+}
+
+@media (max-width:850px) {
+    .custom_container {
+        max-width: 740px
+    }
+}
+
+@media (max-width:776px) {
+    .custom_container {
+        max-width: 680px
+    }
+    .custom_width {
+        max-width: 750px;
+    }
+}
+
+@media (max-width:720px) {
+    .custom_container {
+        max-width: 600px
+    }
+    .ball1,
+    .ball3,
+    .ball2 {
+        display: none;
+    }
+}
+
+@media (max-width:650px) {
+    .custom_container {
+        max-width: 550px
+    }
+}
+
+@media (max-width:580px) {
+    .custom_container {
+        max-width: 540px
+    }
+    .register_soon a,
+    .herosection a,
+    .getStartedSection a {
+        width: 340px;
+    }
+    .tab_section .tab_desc .bg_img {
+        height: 440px;
+        background-size: 100% 100%;
+    }
+    .overlay_text {
+        position: absolute;
+        left: 15px;
+        top: 25%;
+        text-align: left;
+    }
+    .gOULTz {
+        display: block;
+    }
+    .testimony .testimonial-slides .carousel-inner .testimonial p {
+        font-size: 18px;
+    }
+    .customers p {
+        font-size: 18px;
+    }
+    .herosection_content {
+        text-align: center;
+        padding: 50px 0 0 0;
+    }
+    .intro_text {
+        font-size: 30px;
+    }
+    .intro_sub_text {
+        font-size: 16px;
+    }
+    .customers p {
+        font-size: 18px;
+    }
+    .animakerfeatureslist h2 {
+        font-size: 26px;
+    }
+    .animakerfeatureslist .animakerfeature1,
+    .animakerfeatureslist .animakerfeature2,
+    .animakerfeatureslist .animakerfeature3 {
+        padding-top: 30px;
+    }
+    .animakerfeatureslist h3 {
+        font-size: 24px;
+    }
+    .animakerfeatureslist p {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    .animakertemplates h3 {
+        font-size: 30px;
+    }
+    .animakertemplates p {
+        margin-top: 40px;
+    }
+    .animation_profeatures {
+        text-align: center;
+        padding: 50px 0;
+    }
+    .animation_profeatures p {
+        color: #54536C;
+        font-family: 'PT Sans' !important;
+        font-size: 18px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+    .animaker_users_description {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width:560px) {
+    .custom_container {
+        max-width: 500px
+    }
+}
+
+@media (max-width:530px) {
+    .custom_container {
+        max-width: 480px
+    }
+}
+
+@media (max-width:500px) {
+    .custom_container {
+        max-width: 450px
+    }
+}
+
+@media (max-width:480px) {
+    .custom_container {
+        max-width: 400px
+    }
+}
+
+@media (max-width:430px) {
+    .custom_container {
+        max-width: 380px
+    }
+}
+
+@media (max-width:400px) {
+    .custom_container {
+        max-width: 370px
+    }
+}
+
+@media (max-width:380px) {
+    .custom_container {
+        width: 100%;
+        padding: 0px 10px;
+    }
+}

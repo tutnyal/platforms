@@ -6,15 +6,15 @@ import { Metadata } from "next";
 import { cn } from "@/lib/utils";
 
 const title =
-  "Platforms Starter Kit – The all-in-one starter kit for building multi-tenant applications.";
+  "Ainime Platforms Starter Kit – Make Animated Videos with AI for Free.";
 const description =
-  "The Platforms Starter Kit is a full-stack Next.js app with multi-tenancy and custom domain support. Built with Next.js App Router, Vercel Postgres and the Vercel Domains API.";
+  "AInimate is an online AI animation generator and video maker that brings studio quality video content within everyone's reach. Animated Videos, Done Right!";
 const image = "https://vercel.pub/thumbnail.png";
 
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://vercel.pub/favicon.ico"],
+  icons: ["https://www.ainime.io/favicon.ico"],
   openGraph: {
     title,
     description,
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     title,
     description,
     images: [image],
-    creator: "@vercel",
+    creator: "@KingNyalTut",
   },
-  metadataBase: new URL("https://vercel.pub"),
+  metadataBase: new URL("https://www.ainime.io/"),
 };
 
 export default function RootLayout({
