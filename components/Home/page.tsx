@@ -5,11 +5,7 @@ import "./AInime-Home/home-v23.css";
 import "./AInime-Home/home-style12.css";
 import "./css/header-updated-v2.css";
 // import { Link } from 'react-router-dom';
-import cookie_icon from "./AInime-Home/cookieicon.svg";
-import helobar_close from "./AInime-Home/helobar_close.png";
-import logowhite from "./AInime-Home/new-assets/ainime-logo-white.png";
-import logoblack from "./AInime-Home/new-assets/ainime-logo-black.png";
-// import AInimePromo2 from "./AInime-Home/new-assets/AInimePromo2.mp4";
+
 import { setupJquery, productCarousel, testimonialCarousel } from "../../lib/utils/jqueryCode";
 
 import AOS from 'aos';
@@ -20,14 +16,27 @@ import $ from 'jquery';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { alignProperty } from "@mui/material/styles/cssUtils";
+import dynamic from 'next/dynamic';
+
+const jQuery = dynamic(() => {
+  return import('jquery');
+}, { ssr: false });
+
 
 interface Event {
     target: { id: string };
 }
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
+
+
+    
+
+
+        // Code that uses jQuery or document/window objects
+      
     const [activeQuestion, setActiveQuestion] = useState<string | undefined>('q1');
-    const [isTop, setIsTop] = useState<number>(0);
+    const [isTop, setIsTop] = useState<number>(0);  
 
     useEffect(() => {
         function handleScroll() {
@@ -40,16 +49,7 @@ const HomePage: React.FC = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    const handleQuestionClick = (event: Event) => {
-        if (activeQuestion === event.target.id) {
-            setActiveQuestion(undefined);
-            return;
-        }
-        const divId = event.target.id;
-        setActiveQuestion(divId);
-    };
-
+    
     useEffect(() => {
         const swiper1 = new Swiper('.product-carousal-content .swiper', {
             loop: true,
@@ -132,6 +132,8 @@ const HomePage: React.FC = () => {
         });
     }, []);
 
+
+
     return (
         <div>
             <div className="new_home_section">
@@ -142,7 +144,7 @@ const HomePage: React.FC = () => {
                             <h1>Create your own anime show today!</h1>
                             <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios
                                 create shows and movies.</p>
-                            <Link className="rainbow-btn" href="/page2">Create for Free</Link>                           
+                            <Link className="rainbow-btn" href="/demo">Create for Free</Link>                           
                         </div>
                         
                         <div className="show-mobile video-holder">

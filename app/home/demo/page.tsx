@@ -31,7 +31,7 @@ import {
   generate_repose_img,
   getUploadUrl,
   getUploadUrl2
-} from "../../../app/server/generate";
+} from "../../server/generate";
 
 // import { VscGithubAlt } from "react-icons/vsc";
 // import { FaDiscord } from "react-icons/fa";
@@ -65,7 +65,14 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import $ from 'jquery';
 import { AlignCenter } from "lucide-react";
-import ReposerSection from "../../Animations/reposer"
+import ReposerSection from "../../../components/Animations/reposer"
+import Header from '@/components/Header'; // Import the NavMenu component
+import dynamic from 'next/dynamic';
+
+const jQuery = dynamic(() => {
+  return import('jquery');
+}, { ssr: false });
+
 
 export default function Demo() {
   // const [seletedTab, setSelectedTab] = useQueryState("demo", {
@@ -123,8 +130,11 @@ export default function Demo() {
 
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center space-y-10 bg-black">
+    
+    <div >
+       
       <div className="new_home_section">
+      <Header /> 
         <section className="hero-section-wrapper">
           <div className="container1">
             <div className="hero-section-content">
@@ -134,7 +144,7 @@ export default function Demo() {
             </div>
             <div className="show-mobile video-holder">
               <video id="hero-video-mobile" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline poster="" title="Make your first video with Animaker AI" style={{ borderRadius: '20px' }}>
-                <source src="" type="video/mp4" />
+                {/* <source src="" type="video/mp4" /> */}
               </video>
             </div>
 
@@ -278,459 +288,6 @@ function CharacterSheet2() {
   );
 }
 
-// function Img2img() {
-//   // const [prompt, setPrompt] = useState<File>();
-//   const [prompt, setPrompt] = useState<File | null>(null);
-//   const [image, setImage] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [runId, setRunId] = useState("");
-//   const [status, setStatus] = useState<string>();
-//   const [faceFile, setFaceFile] = useState(null);
-//   const [styleFile, setStyleFile] = useState(null);
-//   const [positivePrompt, setPositivePrompt] = useState('');
-//   const [negativePrompt, setNegativePrompt] = useState('nfsw, bad quality image');
-
-//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target.files) return;
-//     setPrompt(e.target.files[0]);
-
-//   };
-
-//   // Polling in frontend to check for the
-//   useEffect(() => {
-//     if (!runId) return;
-//     const interval = setInterval(() => {
-//       checkStatus(runId).then((res) => {
-//         if (res && res.status === "success") {
-//           console.log(res.outputs[0]?.data);
-//           // Depending on your workflows outputs
-//           console.log(res.outputs[0]?.data?.images?.[0]?.url);
-//           setImage(res.outputs[0]?.data?.images?.[0].url ?? "");
-//           clearInterval(interval);
-//         }
-//       });
-//     }, 2000);
-//     return () => clearInterval(interval);
-//   }, [runId]);
-
-//   return (
-//     <Card className="w-full max-w-[600px]">
-//       <CardHeader>Comfy Deploy - Scribble to Anime Girl</CardHeader>
-//       <CardContent>
-//         <form
-//           className="grid w-full items-center gap-1.5"
-//           onSubmit={(e: { preventDefault: () => void; }) => {
-//             e.preventDefault();
-//             if (loading) return;
-//             if (!prompt) return;
-
-//             setImage("");
-
-//             setStatus("getting url for upload");
-
-//             console.log(prompt?.type, prompt?.size);
-
-//             getUploadUrl(prompt?.type, prompt?.size).then((res) => {
-//               if (!res) return;
-
-//               setStatus("uploading input");
-
-//               console.log(res);
-
-//               fetch(res.upload_url, {
-//                 method: "PUT",
-//                 body: prompt,
-//                 headers: {
-//                   "Content-Type": prompt.type,
-//                   "x-amz-acl": "public-read",
-//                   "Content-Length": prompt.size.toString(),
-//                 },
-//               }).then((_res) => {
-//                 if (_res.ok) {
-//                   setStatus("uploaded input");
-
-//                   setLoading(true);
-//                   generate_img(res.download_url).then((res) => {
-//                     console.log(res);
-//                     if (!res) {
-//                       setStatus("error");
-//                       setLoading(false);
-//                       return;
-//                     }
-//                     setRunId(res.run_id);
-//                   });
-//                   setStatus("preparing");
-//                 }
-//               });
-//             });
-//           }}
-//         >
-//           <Label htmlFor="picture">Image prompt</Label>
-//           <Input id="picture" type="file" onChange={handleFileChange} />
-//           <Button type="submit" className="flex gap-2" disabled={loading}>
-//             Generate {loading && <LoadingIcon />}
-//           </Button>
-
-//           {runId && <ImageGenerationResult key={runId} runId={runId} className="aspect-square" />}
-//         </form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
-
-// function Img2img3() {
-//   const [prompt, setPrompt] = useState<File>();
-//   const [prompt2, setPrompt2] = useState<File>();
-//   const [txtprompt, txtsetPrompt] = useState("");
-//   const [txtprompt2, txtsetPrompt2] = useState("");
-//   const [image, setImage] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [runId, setRunId] = useState("");
-//   const [status, setStatus] = useState<string>();
-
-//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target.files) return;
-//     setPrompt(e.target.files[0]);
-//   };
-//   const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target.files) return;
-//     setPrompt2(e.target.files[0]);
-//   };
-
-//   // Polling in frontend to check for the
-//   useEffect(() => {
-//     if (!runId) return;
-//     const interval = setInterval(() => {
-//       checkStatus(runId).then((res) => {
-//         if (res) setStatus(res.status);
-//         if (res && res.status === "success") {
-//           console.log(res.outputs[0]?.data);
-//           setImage(res.outputs[0]?.data?.images?.[0].url ?? "");
-//           setLoading(false);
-//           clearInterval(interval);
-//         }
-//       });
-//     }, 2000);
-//     return () => clearInterval(interval);
-//   }, [runId]);
-
-//   return (
-//     <Card className="w-full max-w-[600px]">
-//       <CardHeader>Comfy Deploy - Scribble to Anime Girl</CardHeader>
-//       <CardContent>
-//         <form
-//           className="grid w-full items-center gap-1.5"
-//           onSubmit={(e) => {
-//             e.preventDefault();
-//             if (loading) return;
-//             if (!prompt) return;
-
-//             setImage("");
-//             // setLoading(true);
-
-//             setStatus("getting url for upload");
-
-//             console.log(prompt?.type, prompt?.size);
-
-//             getUploadUrl(prompt?.type, prompt?.size).then((res) => {
-//               if (!res) return;
-
-//               setStatus("uploading input");
-
-//               console.log(res);
-
-//               fetch(res.upload_url, {
-//                 method: "PUT",
-//                 body: prompt,
-//                 headers: {
-//                   "Content-Type": prompt.type,
-//                   "x-amz-acl": "public-read",
-//                   "Content-Length": prompt.size.toString(),
-//                 },
-//               }).then((_res) => {
-//                 if (_res.ok) {
-//                   setStatus("uploaded input");
-
-//                   setLoading(true);
-//                   generate_repose_img(res.download_url, res.download_url, txtprompt, txtprompt2).then((res) => {
-//                     console.log(res);
-//                     if (!res) {
-//                       setStatus("error");
-//                       setLoading(false);
-//                       return;
-//                     }
-//                     setRunId(res.run_id);
-//                   });
-//                   setStatus("preparing");
-//                 }
-//               });
-//             });
-//           }}
-//         >
-//           <Label htmlFor="picture3">p txt prompt</Label>
-//           <Input
-//             id="picture3"
-//             type="text"
-//             value={txtprompt}
-//             onChange={(e) => txtsetPrompt(e.target.value)}
-//           />
-//           <Label htmlFor="picture3">n txt prompt</Label>
-//           <Input
-//             id="picture4"
-//             type="text"
-//             value={txtprompt2}
-//             onChange={(e) => txtsetPrompt2(e.target.value)}
-//           />
-//           <Label htmlFor="picture">Image prompt</Label>
-//           <Input id="picture" type="file" onChange={handleFileChange} />
-//           <Label htmlFor="picture2">Image prompt 2</Label>
-//           <Input id="picture2" type="file" onChange={handleFileChange2} />
-//           <Button type="submit" className="flex gap-2" disabled={loading}>
-//             Generate {loading && <LoadingIcon />}
-//           </Button>
-
-//           {runId && <ImageGenerationResult key={runId} runId={runId} className="aspect-square" />}
-//         </form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
-
-// function ReposeIMG() {
-//   // const [prompt, setPrompt] = useState<File>();
-//   const [prompt, setPrompt] = useState<File | null>(null);
-//   const [prompt2, setPrompt2] = useState<File | null>(null);
-//   const [image, setImage] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [runId, setRunId] = useState("");
-//   const [status, setStatus] = useState<string>();
-//   const [positivePrompt, setPositivePrompt] = useState('');
-//   const [negativePrompt, setNegativePrompt] = useState('nfsw, bad quality image');
-//   const theme = useTheme();
-//   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
-//   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target.files) return;
-//     setPrompt(e.target.files[0]);
-
-//   };
-
-//   const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target.files) return;
-//     setPrompt2(e.target.files[0]);
-//   };
-
-//   // Polling in frontend to check for the results
-//   useEffect(() => {
-//     if (!runId) return;
-  
-//     const interval = setInterval(() => {
-//       checkStatus(runId).then(res => {
-//         if (res) {
-//           setStatus(res.status); // Update status
-//           console.log("Full API response:", res);
-  
-//           // Check if the task is successful and outputs are present
-//           if (res.status === "success" && res.outputs?.[1]?.data?.images?.[0]?.url) {
-//             const imageUrl = res.outputs[1].data.images[0].url;
-//             console.log(imageUrl);
-//             setImage(imageUrl); // Set the image URL
-//             setLoading(false); // Stop loading
-//             clearInterval(interval); // Clear interval
-//           }
-//         }
-//       }).catch(error => {
-//         console.error("Failed to check status:", error);
-//         setLoading(false); // Consider stopping loading or handling differently
-//         clearInterval(interval); // Clear interval on error too
-//       });
-//     }, 2000);
-  
-//     return () => clearInterval(interval);
-//   }, [runId]);
-  
-
-//   const handleUploads = async (prompt: File, prompt2: File) => {
-//     if (!prompt || !prompt2) {
-//       console.log("Both files need to be selected.");
-//       return;
-//     }
-//     setStatus("getting url for upload");
-
-
-//     try {
-
-//       // Get upload URLs for both files
-//       const uploadOne = await getUploadUrl(prompt.type, prompt.size);
-//       const uploadTwo = await getUploadUrl(prompt2.type, prompt2.size);
-//       setImage("");
-//       setStatus("uploading input images");
-//       // Handle potential nulls from getUploadUrl
-//       if (!uploadOne || !uploadTwo) {
-//         console.error("Failed to get one or both upload URLs.");
-//         setLoading(false);
-//         return; // Stop the process if URLs can't be obtained
-
-//       }
-
-//       console.log(prompt?.type, prompt?.size);
-
-//       // Upload both files
-//       const uploadResults = await Promise.all([
-//         uploadFile(uploadOne.upload_url, prompt),
-//         uploadFile(uploadTwo.upload_url, prompt2)
-//       ]);
-//       console.log(uploadResults);
-//       if (!uploadResults) return;
-
-
-//       // Check both uploads were successful
-//       if (uploadResults.every(res => res.ok)) {
-//         console.log("Both files uploaded successfully");
-//         // Generate image or any other action that needs both URLs
-//         await generate_repose_img(uploadOne.download_url, uploadTwo.download_url, positivePrompt, negativePrompt).then((res) => {
-//           console.log(res);
-//           if (!res) {
-//             setStatus("error");
-//             setLoading(false);
-//             return;
-//           }
-//           setRunId(res.run_id);
-//         });;
-//         setStatus("uploaded input: Success!!");
-//         // setRunId(res.run_id);
-//       } else {
-//         console.log("Failed to upload one or both files");
-//         setStatus("Failed to upload one or both files :(");
-//       }
-//     } catch (error) {
-//       console.error("Upload or generation error:", error);
-//     }
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault(); // Prevent the default form submission
-//     setLoading(true);
-//     if (prompt && prompt2) {
-//       // Use the files for whatever needs to be done
-//       await handleUploads(prompt, prompt2); // Adjust handleUploads to accept files as arguments
-//     } else {
-//       alert("Please select both files before submitting.");
-//     }
-//   };
-
-
-
-//   return (
-
-//     <Card className="w-full">
-//       <CardHeader>Comfy Deploy - Scribble to Anime Girl</CardHeader>
-//       <CardContent>
-//         <form
-//         >
-//           <Label htmlFor="picture1">Positive Text Prompt</Label>
-//           <Input
-//             id="picture1"
-//             type="text"
-//             value={positivePrompt}
-//             onChange={(e) => setPositivePrompt(e.target.value)}
-//           />
-//           <Label htmlFor="picture3">Negative Text Prompt</Label>
-//           <Input
-//             id="picture3"
-//             type="text"
-//             value={negativePrompt}
-//             onChange={(e) => setNegativePrompt(e.target.value)}
-//           />
-//           <div className="slider-row">
-
-//             {/* FaceFile SECTION HERE */}
-//             <div className="col-md-4">
-//               <input
-//                 accept="image/jpeg, image/jpg, image/png"
-//                 style={{ display: 'none' }}
-//                 id="face-image"
-//                 type="file"
-//                 onChange={handleFileChange}
-//                 name="face"
-//               />
-//               <label htmlFor="face-image" style={{ width: "100%", cursor: "pointer" }}>
-//                 <div className="character-builder" style={{ paddingBottom: "14px" }}>
-//                   <div className='bg-vid-container1' >
-//                     <div className='bg-vid-wrapper' >
-//                       {
-//                         prompt ? <img
-//                           src={URL.createObjectURL(prompt)}
-//                           style={{
-//                             width: '100%', height: !isMediumScreen ? "420px" : "300px", borderRadius: "20px"
-//                           }}
-//                           loading="lazy" alt=""
-//                         /> :
-//                           <video autoPlay muted loop playsInline poster="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/5c571840-be6f-4610-ab72-a5e76df68c01/original=true/1F762D5F81BAA22944D2C2DE4234A359DAC74C7302722E779A710C1E02A72559.jpeg" title="Character Builder" style={{ borderRadius: '20px' }}>
-//                             <source src="" type="video/mp4" />
-//                           </video>
-//                       }
-//                     </div>
-//                     <div className='bg-vid-content' data-aos="fade-up" style={{ height: "100%" }}>
-//                       <h2 style={{ color: 'white' }}>Choose<br /> Your Character</h2>
-//                       <p style={{ color: 'white' }}>Select Your character you <br />want to animate.</p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </label>
-//             </div>
-
-//             {/* Pose Section is here */}
-//             <div className="col-md-4">
-//               <input
-//                 accept="image/jpeg, image/jpg, image/png"
-//                 style={{ display: 'none' }}
-//                 id="pose-image"
-//                 type="file"
-//                 onChange={handleFileChange2}
-//                 name="pose"
-//               />
-//               <label htmlFor="pose-image" style={{ width: "100%", cursor: "pointer" }}>
-//                 <div className="character-builder" style={{ height: "100%", paddingBottom: "14px" }}>
-//                   <div className='bg-vid-container1' >
-//                     <div className='bg-vid-wrapper' >
-//                       {
-//                         prompt2 ? <img
-//                           src={URL.createObjectURL(prompt2)}
-//                           style={{
-//                             width: '100%', height: !isMediumScreen ? "420px" : "300px", borderRadius: "20px"
-//                           }}
-//                           loading="lazy" alt=""
-//                         /> :
-//                           <video autoPlay muted loop playsInline poster="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f0456d3-a700-4561-a7b6-246e32140b00/original=true/E3597C6E050D3C523B9788C0172F0BE029F458EE86394D0863C44058ED103FB6.jpeg" title="Character Builder" style={{ borderRadius: '20px' }}>
-//                             <source src="" type="video/mp4" />
-//                           </video>
-//                       }
-//                     </div>
-//                     <div className='bg-vid-content' data-aos="fade-up" style={{ height: "100%" }}>
-//                       <h2 style={{ color: "white" }}>Choose your<br /> character pose</h2>
-//                       <p style={{ color: 'white' }}>Upload an image of a pose to <br />that you want your character in</p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </label>
-//             </div>
-//           </div>
-
-
-//           <Button onClick={handleSubmit} type="submit" className="flex gap-2" disabled={loading}>
-//             Generate {loading && <LoadingIcon />}
-//           </Button>
-
-//           {runId && <ImageGenerationResult key={runId} runId={runId} className="aspect-square" />}
-//         </form>
-
-//       </CardContent>
-//     </Card>
-
-//   );
-// }
 
 function ReposeIMG2(): JSX.Element {
   const [prompt, setPrompt] = useState<File | null>(null);
@@ -1155,5 +712,9 @@ async function uploadFile(uploadUrl: string, file: File): Promise<Response> {
   });
 }
 
+
+function useQueryState(arg0: string, arg1: { defaultValue: string }): [any, any] {
+  throw new Error("Function not implemented.")
+}
 // export default ReposeIMG;
 
