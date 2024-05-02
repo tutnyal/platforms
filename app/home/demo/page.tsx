@@ -3,8 +3,6 @@ import "@/components/Home/home.css"
 import "@/components/Home/AInime-Home/home-v23.css"
 import "@/components/Home/AInime-Home/home-style12.css"
 import "@/components/Home/css/header-updated-v2.css"
-// import CharacterSheetSection from "@/components/Animations/CharacterSheet"
-// import ReposerSection from "@/components/Animations/reposer";
 import { ClipLoader } from "react-spinners";
 import {
   Box, Container, Stack, useMediaQuery,
