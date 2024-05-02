@@ -1,9 +1,9 @@
-"use client"
+// "use client"
 // import React from 'react';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import { redirect } from "next/navigation";
 // import HomePage from "@/components/Home/page"; // Import your homepage component
-// import DemoPage from "@/components/Home/page"; // Assuming you have a DemoPage component
+// import DemoPage from "../home/demo/page"; // Assuming you have a DemoPage component
 // import Header from '@/components/Header'; // Import the NavMenu component
 
 
@@ -30,7 +30,6 @@
 // export default App;
 
 import React from 'react';
-import Link from 'next/link';
 import Header from '@/components/Header'; // Import the NavMenu component
 import HomePage from "@/components/Home/page";
 
@@ -45,6 +44,4 @@ const App = () => {
 };
 
 export default App;
-
-
 

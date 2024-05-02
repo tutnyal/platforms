@@ -1,124 +1,102 @@
-"use client"
-import { useState, useEffect } from "react";
-import "./home.css";
-import "./AInime-Home/home-v23.css";
-import "./AInime-Home/home-style12.css";
-import "./css/header-updated-v2.css";
-
-
-import { setupJquery, productCarousel, testimonialCarousel } from "../../lib/utils/jqueryCode";
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useEffect, useState } from "react";
+import { setupJquery, productCarousel, testimonialCarousel } from "../lib/utils/jqueryCode";
+import Link from 'next/link';
+import React from 'react';
 import Swiper from 'swiper';
 import 'swiper/css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import $ from 'jquery';
-import Link from 'next/link';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { alignProperty } from "@mui/material/styles/cssUtils";
-import dynamic from 'next/dynamic';
 
-
-const HomePage = () => {
-
+const NoSSRComponent = () => {
     const [activeQuestion, setActiveQuestion] = useState('q1');
     const [isTop, setIsTop] = useState(0);
 
-    useEffect(() => {
-        function handleScroll() {
+   
+
+    React.useEffect(() => {
+      function handleScroll(): void {
         const scrollTop = window.pageYOffset;
         setIsTop(scrollTop);
+    }
+        if (typeof window !== 'undefined') {
+          
+            window.addEventListener('scroll', handleScroll);
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
         }
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-        window.removeEventListener('scroll', handleScroll);
-        };
     }, []);
+    
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Initialize Swiper here and other client-side libraries
+            const swiper1 = new Swiper('.product-carousal-content .swiper', {
+                loop: true,
+                allowTouchMove: false,
+                speed: 1200,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+    
+            // The rest of your Swiper code here...
+            $('.product-carousal-content ul.blog-head > li').on('click', function () {
+                $('.product-carousal-content ul.blog-head > li').removeClass('active');
+                let clickedIndex = $(this).index();
+                swiper1.slideToLoop(clickedIndex);
+                setTimeout(function () {
+                  let currentChild = clickedIndex + 1;
+                  let selector = '.product-carousal-content ul.blog-head > li:nth-child(' + currentChild + ')';
+                  $(selector).addClass('active');
+                }, 0);
+              });
+      
+              const swiper2 = new Swiper('.swiper', {
+                // Optional parameters
+                loop: true,
+                allowTouchMove: false,
+                speed: 1200,
+                spaceBetween: 30,
+          
+                // Navigation arrows
+                navigation: {
+                  nextEl: '.animaker-testimonials .swiper-button-next',
+                  prevEl: '.animaker-testimonials .swiper-button-prev',
+                },
+          
+              });
+          
+              $('.navigation-toggle .swiper-button-next').on('click', function () {
+                swiper2.slideNext();
+              });
+          
+              $('.navigation-toggle .swiper-button-prev').on('click', function () {
+                swiper2.slidePrev();
+              });
+          
+              return () => {
+                swiper1.destroy();
+                // swiper2.destroy()
+              }
+            }
 
-    useEffect(() => {
-        const swiper1 = new Swiper('.product-carousal-content .swiper', {
-          loop: true,
-          allowTouchMove: false,
-          speed: 1200,
-          spaceBetween: 30,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
+            }, []);
     
-        $('.product-carousal-content ul.blog-head > li').on('click', function () {
-          $('.product-carousal-content ul.blog-head > li').removeClass('active');
-          let clickedIndex = $(this).index();
-          swiper1.slideToLoop(clickedIndex);
-          setTimeout(function () {
-            let currentChild = clickedIndex + 1;
-            let selector = '.product-carousal-content ul.blog-head > li:nth-child(' + currentChild + ')';
-            $(selector).addClass('active');
-          }, 0);
-        });
+    // Similar approach for any other client-side only libraries
+    
 
-        const swiper2 = new Swiper('.swiper', {
-          // Optional parameters
-          loop: true,
-          allowTouchMove: false,
-          speed: 1200,
-          spaceBetween: 30,
-    
-          // Navigation arrows
-          navigation: {
-            nextEl: '.animaker-testimonials .swiper-button-next',
-            prevEl: '.animaker-testimonials .swiper-button-prev',
-          },
-    
-        });
-    
-        $('.navigation-toggle .swiper-button-next').on('click', function () {
-          swiper2.slideNext();
-        });
-    
-        $('.navigation-toggle .swiper-button-prev').on('click', function () {
-          swiper2.slidePrev();
-        });
-    
-        return () => {
-          swiper1.destroy();
-          // swiper2.destroy()
-        }
-      }, [])
-
-    useEffect(() => {
+    React.useEffect(() => {
         setupJquery();
         AOS.init({
           duration: 1000
         });
       }, [])
 
-    return (
-        <div>
-            <div className="new_home_section">
-                {/* Hero Banner section */}
-                <section className="hero-section-wrapper">
-                    <div className="container1">
-                        <div className="hero-section-content">
-                            <h1>Create your own anime show today!</h1>
-                            <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios
-                                create shows and movies.</p>
-                            <Link className="rainbow-btn" href="/demo">Create for Free</Link>                           
-                        </div>
-                        
-                        <div className="show-mobile video-holder">
-                            <video id="hero-video-mobile" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline poster="" title="Make your first video with AInime AI" style={{ borderRadius: '20px' }}>
-                                <source src="" type="video/mp4" />
-                            </video>
-                        </div>
-
-                    </div>
-                </section>
-
-                <div className="why-animaker "> 
+      return (
+        <div className="why-animaker "> 
                             
                     <div className="why-animaker-content " >
                         
@@ -173,6 +151,7 @@ const HomePage = () => {
                                             </div>
                                         </div>
                                     </div>
+
                                     <div className="carousal-section" data-aos="fade-up">
                                         <div className="swiper">
                                             <div className="swiper-wrapper">
@@ -320,9 +299,9 @@ const HomePage = () => {
 
                     </div>
                 </div>
-            </div>
-        </div>
     );
-}
+      
 
-export default HomePage;
+};
+
+export default NoSSRComponent;

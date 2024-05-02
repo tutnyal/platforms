@@ -1,10 +1,11 @@
+
 "use client"
 import { useState, useEffect } from "react";
-import "./home.css";
-import "./AInime-Home/home-v23.css";
-import "./AInime-Home/home-style12.css";
-import "./css/header-updated-v2.css";
-// import { Link } from 'react-router-dom';
+import "@/components/Home/home.css";
+import "@/components/Home/AInime-Home/home-v23.css";
+import "@/components/Home/AInime-Home/home-style12.css";
+import "@/components/Home/css/header-updated-v2.css";
+
 
 import { setupJquery, productCarousel, testimonialCarousel } from "../../lib/utils/jqueryCode";
 
@@ -18,123 +19,88 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { alignProperty } from "@mui/material/styles/cssUtils";
 import dynamic from 'next/dynamic';
 
-const jQuery = dynamic(() => {
-  return import('jquery');
-}, { ssr: false });
-
-
-interface Event {
-    target: { id: string };
-}
 
 const HomePage = () => {
+    const [isTop, setIsTop] = useState(0);
 
+    const [activeTab, setActiveTab] = useState('Problem');
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+   
+    const Problem = () => <div>
+  
+  
+    <div className="swiper-slide one">
+      <div className="tile-card">
+          <div className="slider-row">
+              <div className="col-md-8">
+                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c561bd2b-4f8c-4014-8d8c-67d1327361eb/original=true/grid-0077-1635750043-square%20wander%20solid%20stripes%20voxel%20complex%20vertex%20order%20cube%20ray%20rectangle%20metallic%20beyond%20translucent%20odd%20malleable%20fissure%20mass.jpeg" alt="Training-and-learning" className="slider-graphic-img" />
+              </div>
+              <div className="col-md-8">
+                  <div >
+                      <h2>The Problem</h2><br />
+                      <p>Animators are overworked, underpaid, and exploited - even when the industry is booming.
+                          The unfair treatment has made it unsustainable of animators, it has already driven out great talents
+                          and at worst lead to death.
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+                                                  
+  
+  
+  </div>;
+  const Soultion = () => <div>
     
-
-
-        // Code that uses jQuery or document/window objects
-      
-    const [activeQuestion, setActiveQuestion] = useState<string | undefined>('q1');
-    const [isTop, setIsTop] = useState<number>(0);  
-
-    useEffect(() => {
-        function handleScroll() {
-            const scrollTop = window.pageYOffset;
-            setIsTop(scrollTop);
-        }
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+   
+    <div className="swiper-slide two">
+      <div className="tile-card">
+          <div className="slider-row">
+              <div className="col-md-8">
+                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b0eb04ec-0c81-4f83-a11d-21b698416188/original=true/2CA547A618F29E9E6ADE1882F27861B0BDDEC20D1DA8989D08DB5A5CFDAB41C0.jpeg" alt="Marketing-and-sales" className="slider-graphic-img" />
+              </div>
+              <div className="col-md-8">
+                  <div >
+                      <h2>Our Solution for<br /> Solo & Small Anime Studios</h2><br />
+                      <p>The solution is simple, but hard to implement: reducing production time, costs, and difficulty while empowering animators
+                          to monetize their intellectual property. </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+                                                  
     
-    useEffect(() => {
-        const swiper1 = new Swiper('.product-carousal-content .swiper', {
-            loop: true,
-            allowTouchMove: false,
-            speed: 1200,
-            spaceBetween: 30,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-        $('.product-carousal-content ul.blog-head > li').on('click', function () {
-            $('.product-carousal-content ul.blog-head > li').removeClass('active');
-            let clickedIndex = $(this).index();
-            swiper1.slideToLoop(clickedIndex);
-            setTimeout(function () {
-                let currentChild = clickedIndex + 1;
-                let selector = `.product-carousal-content ul.blog-head > li:nth-child(${currentChild})`;
-                $(selector).addClass('active');
-            }, 0);
-        });
-
-        var button = document.getElementById('prod-next');
-        button!.onclick = function () {
-            var container = document.getElementById('prod-container1');
-            sideScroll(container!, 'right', 25, 100, 10);
-        };
-
-        var back = document.getElementById('prod-prev');
-        back!.onclick = function () {
-            var container = document.getElementById('prod-container1');
-            sideScroll(container!, 'left', 25, 100, 10);
-        };
-
-        function sideScroll(element: HTMLElement, direction: 'left' | 'right', speed: number, distance: number, step: number) {
-            var scrollAmount = 0;
-            var slideTimer = setInterval(function () {
-                if (direction === 'left') {
-                    element.scrollLeft -= step;
-                } else {
-                    element.scrollLeft += step;
-                }
-                scrollAmount += step;
-                if (scrollAmount >= distance) {
-                    clearInterval(slideTimer);
-                }
-            }, speed);
-        }
-
-        const swiper2 = new Swiper('.animaker-testimonials .swiper', {
-            loop: true,
-            allowTouchMove: false,
-            speed: 1200,
-            spaceBetween: 30,
-            navigation: {
-                nextEl: '.animaker-testimonials .swiper-button-next',
-                prevEl: '.animaker-testimonials .swiper-button-prev',
-            },
-        });
-
-        $('.animaker-testimonials .navigation-toggle .swiper-button-next').on('click', function () {
-            swiper2.slideNext();
-        });
-
-        $('.animaker-testimonials .navigation-toggle .swiper-button-prev').on('click', function () {
-            swiper2.slidePrev();
-        });
-
-        return () => {
-            swiper1.destroy();
-            // swiper2.destroy();
-        };
-    }, []);
-
-    useEffect(() => {
-        setupJquery();
-        AOS.init({
-            duration: 1000
-        });
-    }, []);
-
-
-
+    </div>;
+  const Creators = () => <div>
+    
+   
+    <div className="swiper-slide three">
+      <div className="tile-card">
+          <div className="slider-row">
+              <div className="col-md-4">
+                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f745265-4aae-425c-b0d1-86391af40159/original=true/00105-1100137840.jpeg" alt="Internal-communications" />
+              </div>
+              <div className="col-md-4">
+                  <div >
+                      <h2>You, the creators</h2><br />
+                      <p>We&apos;re a piece of the puzzle; you are the other half!​<br />
+                          Also, we&apos;ve got your back - Let us serve you and we will do big things together.
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    
+    </div>
     return (
+      
         <div>
             <div className="new_home_section">
                 {/* Hero Banner section */}
@@ -157,7 +123,7 @@ const HomePage = () => {
                 </section>
 
                 <div className="why-animaker "> 
-                             
+                            
                     <div className="why-animaker-content " >
                         
                         {/* Video section */}
@@ -181,7 +147,7 @@ const HomePage = () => {
                             <div className="container1" >
                                 <div className="product-carousal-content">
                                     <div className="product-carousal-head">
-                                        <div className="row" data-aos="fade-up">
+                                        <div className="row" >
                                             <div className="col-md-8">
                                                 <h1>Why
                                                     Ainime?
@@ -191,19 +157,25 @@ const HomePage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="row" data-aos="fade-up">
+                                    <div className="row" >
                                         <div className="col-md-8">
                                             <div className="show-mobile">
                                                 <div id="prod-prev" className="icon-left-arrow">
                                                     <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt=""  />
                                                 </div>
                                             </div>
+                                            
                                             <ul id="prod-container1" className="blog-head">
-                                                <li className="active">The Problem</li>
+                                                
+                                                <li className={activeTab === 'Problem' ? 'active' : ''} onClick={() => handleTabClick('Problem')}>The Problem</li>
+                                                <li className={activeTab === 'Soultion' ? 'active' : ''} onClick={() => handleTabClick('Soultion')}>Our Solution</li>
+                                                <li className={activeTab === 'Creators' ? 'active' : ''} onClick={() => handleTabClick('Creators')}>You, the creators</li>
+                                                {/* <li className="active" >The Problem</li>
                                                 <li>Our Solution </li>
-                                                <li>You, the creators</li>
+                                                <li>You, the creators</li> */}
 
                                             </ul>
+                                            
                                             <div id="prod-next" className="show-mobile">
                                                 <div className="icon-right-arrow">
                                                     <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt="" className="slider-arrow" />
@@ -211,61 +183,15 @@ const HomePage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="carousal-section" data-aos="fade-up">
+                                    
+                                    <div className="carousal-section" >
                                         <div className="swiper">
                                             <div className="swiper-wrapper">
-                                                <div className="swiper-slide one">
-                                                    <div className="tile-card">
-                                                        <div className="slider-row">
-                                                            <div className="col-md-8">
-                                                                <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c561bd2b-4f8c-4014-8d8c-67d1327361eb/original=true/grid-0077-1635750043-square%20wander%20solid%20stripes%20voxel%20complex%20vertex%20order%20cube%20ray%20rectangle%20metallic%20beyond%20translucent%20odd%20malleable%20fissure%20mass.jpeg" alt="Training-and-learning" className="slider-graphic-img" />
-                                                            </div>
-                                                            <div className="col-md-8">
-                                                                <div className="slider-content" data-aos="fade-up">
-                                                                    <h2>The Problem</h2>
-                                                                    <p>Animators are overworked, underpaid, and exploited - even when the industry is booming.
-                                                                        The unfair treatment has made it unsustainable of animators, it has already driven out great talents
-                                                                        and at worst lead to death.
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="swiper-slide two">
-                                                    <div className="tile-card">
-                                                        <div className="slider-row">
-                                                            <div className="col-md-8">
-                                                                <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b0eb04ec-0c81-4f83-a11d-21b698416188/original=true/2CA547A618F29E9E6ADE1882F27861B0BDDEC20D1DA8989D08DB5A5CFDAB41C0.jpeg" alt="Marketing-and-sales" className="slider-graphic-img" />
-                                                            </div>
-                                                            <div className="col-md-8">
-                                                                <div className="slider-content" data-aos="fade-up">
-                                                                    <h2>Our Solution for<br /> Solo & Small Anime Studios</h2>
-                                                                    <p>The solution is simple, but hard to implement: reducing production time, costs, and difficulty while empowering animators
-                                                                        to monetize their intellectual property. </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="swiper-slide three">
-                                                    <div className="tile-card">
-                                                        <div className="slider-row">
-                                                            <div className="col-md-4">
-                                                                <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f745265-4aae-425c-b0d1-86391af40159/original=true/00105-1100137840.jpeg" alt="Internal-communications" />
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <div className="slider-content" data-aos="fade-up">
-                                                                    <h2>You, the creators</h2>
-                                                                    <p>We&apos;re a piece of the puzzle; you are the other half!​<br />
-                                                                        Also, we&apos;ve got your back - Let us serve you and we will do big things together.
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                            <div className="tab-content">
+                                              {activeTab === 'Problem' && <Problem />}
+                                              {activeTab === 'Soultion' && <Soultion />}
+                                              {activeTab === 'Creators' && <Creators />}
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +203,7 @@ const HomePage = () => {
                         <section className="meet-animation center-content">
                             <div className="container1">
                                 <div className="meet-animation-content">
-                                    <div className="row" data-aos="fade-up">
+                                    <div className="row" >
                                         <div className="col-md-4">
                                             <h1>How
                                                 it works
@@ -303,7 +229,7 @@ const HomePage = () => {
 
                                                     </div>
                                                 </div>
-                                                <div className='bg-vid-content' data-aos="fade-up" data-aos-delay="200">
+                                                <div className='bg-vid-content' >
                                                     <h1>1. </h1><h2>Create your characters</h2>
                                                     <p style={{ color: '#EFEFEF' }}>Simply describe or load an image to create unique characters.</p>
                                                 </div>
@@ -319,7 +245,7 @@ const HomePage = () => {
 
                                                     </div>
                                                 </div>
-                                                <div className='bg-vid-content' data-aos="fade-up" data-aos-delay="200">
+                                                <div className='bg-vid-content' >
                                                     <h1>2. </h1><h2>Animate your characters</h2>
                                                     <p style={{ color: '#EFEFEF' }}>Describe your character animation or use reference videos to create new animations.</p>
                                                 </div>
@@ -335,7 +261,7 @@ const HomePage = () => {
 
                                                     </div>
                                                 </div>
-                                                <div className='bg-vid-content' data-aos="fade-up" data-aos-delay="200">
+                                                <div className='bg-vid-content' >
                                                     <h1>3. </h1><h2>Produce your world class anime show</h2>
                                                     <p style={{ color: '#EFEFEF' }}>We have tons of assets & references, inspiring you to create your best anime.</p>
                                                 </div>
@@ -350,7 +276,7 @@ const HomePage = () => {
                         <section className="first-video center-content">
                             <div className="container1">
                                 <div className="first-video-content">
-                                    <h1 data-aos="fade-up">The world is waiting <br />for your first Anime!</h1>
+                                    <h1 >The world is waiting <br />for your first Anime!</h1>
                                     <Link href="/demo" className="rainbow-btn">Create for Free</Link>
                                 </div>
                             </div>

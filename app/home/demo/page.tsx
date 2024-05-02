@@ -6,13 +6,12 @@ import "@/components/Home/css/header-updated-v2.css"
 import { ClipLoader } from "react-spinners";
 import {
   Box, Container, Stack, useMediaQuery,
-  Dialog, TextField, Select, MenuItem, FormControl,
+  Dialog, TextField, MenuItem, FormControl,
   InputLabel
 } from "@mui/material";
 import {
   StyledAnimateButton, StyledTypography
 } from "../../../lib/styles/home_styles";
-
 import { useTheme } from '@mui/material/styles';
 import { LoadingIcon } from "@/components/LoadingIcon";
 import { Button } from "@/components/ui/button";
@@ -31,31 +30,18 @@ import {
   getUploadUrl2
 } from "../../server/generate";
 
-// import { VscGithubAlt } from "react-icons/vsc";
-// import { FaDiscord } from "react-icons/fa";
-import { useEffect, useState } from "react";
-// import {
-//   StyledAnimateButton, StyledTypography
-// } from "@/lib/styles/home_styles";
-import {
-  // Select2,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useState } from "react";
+
+
 import { ImageGenerationResult } from "@/components/ImageGenerationResult";
 import { ImageGenerationResult_sheets } from "@/components/ImageGenerationResult_sheets";
-import { WebsocketDemo } from "@/components/WebsocketDemo";
-import { WebsocketDemo2 } from "@/components/WebsocketDemo2";
-import { cn } from "../../../lib/utils"; 
-import { WebsocketDemo3 } from "@/components/WebsocketDemo3";
-// import { parseAsInteger, parseAsIsoDateTime, useQueryState } from "next-usequerystate";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import LoginButton from "../login/login-button";
+import { signIn } from "next-auth/react";
+import LoadingDots from "@/components/icons/loading-dots";
+import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
+
 import Link from 'next/link';
 import Swiper from 'swiper';
 import 'swiper/css';
@@ -63,140 +49,187 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import $ from 'jquery';
 import { AlignCenter } from "lucide-react";
-import ReposerSection from "../../../components/Animations/reposer"
+
 import Header from '@/components/Header'; // Import the NavMenu component
-import dynamic from 'next/dynamic';
-
-const jQuery = dynamic(() => {
-  return import('jquery');
-}, { ssr: false });
+import { DemoClosedNotice } from "@/components/DemoClosedNotice"
 
 
-export default function Demo() {
-  // const [seletedTab, setSelectedTab] = useQueryState("demo", {
-  //   defaultValue: "Txt2img",
-  // });
+const Demo = () => {
+    const [isTop, setIsTop] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [activeTab, setActiveTab] = useState('Problem');
 
-  const [activeQuestion, setActiveQuestion] = useState<string | undefined>('q1');
-  const [isTop, setIsTop] = useState(0);
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
 
-  useEffect(() => {
-    function handleScroll() {
-      const scrollTop = window.pageYOffset;
-      setIsTop(scrollTop);
-    }
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const swiper1 = new Swiper('.product-carousal-content .swiper', {
-      loop: true,
-      allowTouchMove: false,
-      speed: 1200,
-      spaceBetween: 30,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-
-    $('.product-carousal-content ul.blog-head > li').on('click', function () {
-      $('.product-carousal-content ul.blog-head > li').removeClass('active');
-      let clickedIndex = $(this).index();
-      swiper1.slideToLoop(clickedIndex);
-      setTimeout(function () {
-        let currentChild = clickedIndex + 1;
-        let selector = '.product-carousal-content ul.blog-head > li:nth-child(' + currentChild + ')';
-        $(selector).addClass('active');
-      }, 0);
-    });
-
-  }, [])
-
-  useEffect(() => {
-    // setupJquery()
-    AOS.init({
-      duration: 0
-    });
-  }, [])
-
-
-
-  return (
+  const Problem = () => <div>
+  <div className="swiper-slide one">
+    <div className="tile-card">
+        <div>
+        <CharacterSheet2 /> 
+        </div>
+    </div>
+</div>
+</div>;
     
-    <div >
-       
+  //   const Problem = () => <div>
+  
+  
+  //   <div className="swiper-slide one">
+  //     <div className="tile-card">
+  //     <div className="row">
+  //       <ReposeIMG2/>                              
+  //      </div>
+                                
+  //     </div>
+  // </div>
+                                                  
+  
+  
+  // </div>;
+  const Soultion = () => <div>
+    
+    <div className="swiper-slide two">
+      <div className="tile-card">
+      <div className="row">
+        <ReposeIMG2 />                              
+       </div>
+      </div>
+  </div>
+                                                  
+    
+    </div>;
+  const Creators = () => <div>
+    <div className="swiper-slide three">
+      <div className="tint">
+      <div className="tile-card">
+      <div className="row">
+        <DemoClosedNotice />
+        {/* <ReposeIMG2/>                               */}
+       </div>
+      </div>
+      </div>
+  </div>
+    
+    </div>
+
+    return (
+      
+      <div>
       <div className="new_home_section">
-      <Header /> 
+        <Header />
+        {/* Hero Section, Welcome text */}
         <section className="hero-section-wrapper">
-          <div className="container1">
+        <div className="container">
             <div className="hero-section-content">
-              <h1>Welcome!<br /> Lets start creating anime.</h1>
-              <p>Follow a simple 3 step process, once you get use to it let us know <br />and we will get you started on the advanced user interface.</p>
-              {/* <a className="rainbow-btn">Create for Free</a> */}
+            <h1>Welcome!<br /> Lets start creating anime.</h1>
+            <p>Follow a simple 3 step process, once you get use to it let us know <br />and we will get you started on the advanced user interface.</p>
+            {/* <a className="rainbow-btn">Create for Free</a> */}
             </div>
             <div className="show-mobile video-holder">
-              <video id="hero-video-mobile" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline poster="" title="Make your first video with Animaker AI" style={{ borderRadius: '20px' }}>
-                {/* <source src="" type="video/mp4" /> */}
-              </video>
-            </div>
-
-          </div>
-        </section>
-
-        {/* <section className="hero-section-wrapper"> */}
-        <div className="why-animaker center-content" >
-          <div className="container1" >
-            <div className="product-carousal-content" >
-              <div className="col-md-8" align-items="center">
-                <div className="show-mobile">
-                </div>
-                <ul id="prod-container1" className="blog-head">
-                  <li className="active">Character Sheet</li>
-                  <li>Reposer for Keyframes </li>
-                  <li>Create Anime Video</li>
-                </ul>
-              </div>
-
-              <div className="carousal-section" >
-                <div className="swiper">
-                  <div className="swiper-wrapper">
-                    <div className="swiper-slide one">
-                      <div className="tile-card">
-                        <CharacterSheet2 />
-                      </div>
-                    </div>
-
-                    <div className="swiper-slide three">
-                      <div className="tile-card">
-                        <ReposeIMG2 />
-                      </div>
-                    </div>
-
-                    <div className="swiper-slide four">
-                      
-                      <div className="tile-card">
-                      
-                        <ReposerSection />
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+            <video id="hero-video-mobile" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline poster="" title="Make your first video with Animaker AI" style={{ borderRadius: '20px' }}>
+                <source src="" type="video/mp4"  />
+            </video>
+            </div>            
         </div>
+        </section>
+         
+
+          <div className="why-animaker "> 
+                      
+              <div className="why-animaker-content " >
+
+                  {/* Why Ainime explainer section */}
+                  <section className="product-carousal center-content">
+                      <div className="container1" >
+                          <div className="product-carousal-content">
+                              <div className="row" >
+                                  <div className="col-md-8">
+                                      <div className="show-mobile">
+                                          <div id="prod-prev" className="icon-left-arrow">
+                                              <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt=""  />
+                                          </div>
+                                      </div>
+                                      
+                                      <ul id="prod-container1" className="blog-head">
+                                          <li className={activeTab === 'Problem' ? 'active' : ''} onClick={() => handleTabClick('Problem')}>Character Sheet</li>
+                                          <li className={activeTab === 'Soultion' ? 'active' : ''} onClick={() => handleTabClick('Soultion')}>Image Reposer</li>
+                                          <li className={activeTab === 'Creators' ? 'active' : ''} onClick={() => handleTabClick('Creators')}>Your Video</li>
+                                      </ul>
+                                      
+                                      <div id="prod-next" className="show-mobile">
+                                          <div className="icon-right-arrow">
+                                              <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt="" className="slider-arrow" />
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                              <div className="carousal-section" >
+                                  <div className="swiper">
+                                      <div className="swiper-wrapper">
+                                      <div className="tab-content">
+                                        {activeTab === 'Problem' && <Problem />}
+                                        {activeTab === 'Soultion' && <Soultion />}
+                                        {activeTab === 'Creators' && <Creators />}
+                                      </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+
+
+                  <section className="first-video center-content">
+                      <div className="container1">
+                          <div className="first-video-content">
+                              <h1 >Want to do more? <br />Get inside the app!</h1>
+                              {/* <Link href= "/login" className="rainbow-btn">Best app</Link> */}
+                              {/* <button
+                                  disabled={loading}
+                                  onClick={() => {
+                                    setLoading(true);
+                                    signIn("github");
+                                  }}
+                                  className={`${
+                                    loading
+                                      ? "cursor-not-allowed bg-stone-50 dark:bg-stone-800"
+                                      : "bg-white hover:bg-stone-50 active:bg-stone-100 dark:bg-black dark:hover:border-white dark:hover:bg-black"
+                                  } group my-2 flex h-10 w-full items-center justify-center space-x-2 rounded-md border border-stone-200 transition-colors duration-75 focus:outline-none dark:border-stone-700`}
+                                >
+                                  {loading ? (
+                                    <LoadingDots color="#A8A29E" />
+                                  ) : (
+                                    <>
+                                      <svg
+                                        className="h-4 w-4 text-black dark:text-white"
+                                        aria-hidden="true"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                      </svg>
+                                      <p className="text-sm font-medium text-stone-600 dark:text-stone-400">
+                                        Login with GitHub
+                                      </p>
+                                    </>
+                                  )}
+                                </button> */}
+                              
+                          </div>
+                      </div>
+                  </section>
+
+              </div>
+          </div>
       </div>
-    </div>
-  )
+  </div>
+    );
 }
+
+export default Demo;
 
 function CharacterSheet2() {
   const [prompt, setPrompt] = useState("");
@@ -209,7 +242,7 @@ function CharacterSheet2() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Card className="container1">
+    <Card className="w-full">
       <CardHeader>
       <h2>ainime - Character design sheets</h2>
         <div >
@@ -410,24 +443,10 @@ function ReposeIMG2(): JSX.Element {
       <CardContent>
         <form
         >
-          {/* <div className="slider-row">
-          <Label htmlFor="picture1">Enter Positive Text Prompt</Label>
-          <Input
-            id="picture1"
-            type="text"
-            value={positivePrompt}
-            onChange={(e) => setPositivePrompt(e.target.value)}
-          />
-          <Label htmlFor="picture3">Enter Negative Text Prompt</Label>
-          <Input
-            id="picture3"
-            type="text"
-            value={negativePrompt}
-            onChange={(e) => setNegativePrompt(e.target.value)}
-          />
-          </div> */}
-          <div className="image-row no-gutters">
+          
+          <div className="grid w-full items-center gap-1.5">
                     {/*Box for the text fields or prompts*/}
+                    <div className="row  no-gutters">
                     <Box>
                         <TextField
                             label="Positive Prompt"
@@ -448,6 +467,9 @@ function ReposeIMG2(): JSX.Element {
                         />
 
                     </Box>
+                    </div>
+
+                    <div className="slider-row  no-gutters">
 
                     {/* FaceFile SECTION HERE */}
                     <div className="col-md-4">
@@ -520,6 +542,7 @@ function ReposeIMG2(): JSX.Element {
                             </div>
                         </label>
                     </div>
+                    </div>
                 </div>
           {/* <Button onClick={handleSubmit} type="submit" className="flex gap-2" disabled={loading}>
             Generate {loading && <LoadingIcon />}
@@ -544,160 +567,6 @@ function ReposeIMG2(): JSX.Element {
   );
 }
 
-
-const poses = {
-  arms_on_hips: {
-    url: "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(1).png",
-    name: "Arms on Hips",
-  },
-  waving: {
-    url: "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(2).png",
-    name: "Waving",
-  },
-  legs_together_sideways: {
-    url: "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(3).png",
-    name: "Legs together, body at an angle",
-  },
-  excited_jump: {
-    url: "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(4).png",
-    name: "excited jump",
-  },
-  pointing_to_the_stars: {
-    url: "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(5).png",
-    name: "Pointing to the stars",
-  },
-};
-
-// function OpenposeToImage() {
-//   const [prompt, setPrompt] = useState("");
-//   const [poseImageUrl, setPoseImageUrl] = useState(
-//     "https://pub-6230db03dc3a4861a9c3e55145ceda44.r2.dev/openpose-pose%20(1).png",
-//   );
-//   const [poseLoading, setPoseLoading] = useState(false);
-//   const [image, setImage] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [runId, setRunId] = useState("");
-//   const [status, setStatus] = useState<string>();
-
-//   const handleSelectChange = (value: keyof typeof poses) => {
-//     setPoseImageUrl(poses[value].url); // Update image based on selection
-//   };
-
-//   // Polling in frontend to check for the
-//   useEffect(() => {
-//     if (!runId) return;
-//     const interval = setInterval(() => {
-//       checkStatus(runId).then((res) => {
-//         if (res) setStatus(res.status);
-//         if (res && res.status === "success") {
-//           console.log(res.outputs[0]?.data);
-//           setImage(res.outputs[0]?.data?.images?.[0].url ?? "");
-//           setLoading(false);
-//           clearInterval(interval);
-//         }
-//       });
-//     }, 2000);
-//     return () => clearInterval(interval);
-//   }, [runId]);
-
-//   return (
-//     <Card className="w-full max-w-[600px]">
-//       <CardHeader>
-//         Comfy Deploy - Pose Creator Tool
-//         <div className="text-xs text-foreground opacity-50">
-//           OpenPose -{" "}
-//           <a href="https://civitai.com/models/13647/super-pose-book-vol1-controlnet">
-//             pose book
-//           </a>
-//         </div>
-//       </CardHeader>
-//       <CardContent>
-//         <form
-//           className="grid w-full items-center gap-1.5"
-//           onSubmit={(e: { preventDefault: () => void; }) => {
-//             if (loading) return;
-
-//             e.preventDefault();
-//             setLoading(true);
-//             generate_img_with_controlnet(poseImageUrl, prompt).then((res) => {
-//               console.log("here", res);
-//               if (!res) {
-//                 setStatus("error");
-//                 setLoading(false);
-//                 return;
-//               }
-//               setRunId(res.run_id);
-//             });
-//             setStatus("preparing");
-//           }}
-//         >
-//           <Select
-//             defaultValue={"Arms on Hips"}
-//             onValueChange={(value: string) => {
-//               handleSelectChange(value as keyof typeof poses);
-//               setPoseLoading(true); // Start loading when a new pose is selected
-//             }}
-//           >
-//             <Label htmlFor="picture">Pose</Label>
-//             <SelectTrigger className="w-[180px]">
-//               <SelectValue placeholder="Select a Pose" />
-//             </SelectTrigger>
-//             <SelectContent>
-//               <SelectGroup>
-//                 <SelectLabel>Poses</SelectLabel>
-//                 {Object.entries(poses).map(([poseName, attr]) => (
-//                   <SelectItem key={poseName} value={poseName}>
-//                     {attr.name}
-//                   </SelectItem>
-//                 ))}
-//               </SelectGroup>
-//             </SelectContent>
-//           </Select>
-//           <Label htmlFor="picture">Image prompt</Label>
-//           <Input
-//             id="picture"
-//             type="text"
-//             value={prompt}
-//             onChange={(e: { target: { value: any; }; }) => setPrompt(e.target.value)}
-//           />
-//           <Button type="submit" className="flex gap-2" disabled={loading}>
-//             Generate {loading && <LoadingIcon />}
-//           </Button>
-
-//           <div className="grid grid-cols-2 gap-4">
-//             <div className="w-full rounded-lg relative">
-//               {/* Pose Image */}
-//               {poseLoading && (
-//                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-//                   <LoadingIcon />
-//                 </div>
-//               )}
-//               {poseImageUrl && (
-//                 <img
-//                   className="w-full h-full object-contain"
-//                   src={poseImageUrl}
-//                   alt="Selected pose"
-//                   onLoad={() => setPoseLoading(false)}
-//                 ></img>
-//               )}
-//             </div>
-//             {/* <Separator
-//               orientation="vertical"
-//               className="border-gray-200"
-//               decorative
-//             /> */}
-//             <div className="w-full h-full">
-//               {runId && <ImageGenerationResult key={runId} runId={runId} className="aspect-[768/1152]" />}
-//             </div>
-//           </div>
-//         </form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
-
-// Helper function to perform the file upload
-
 async function uploadFile(uploadUrl: string, file: File): Promise<Response> {
   return fetch(uploadUrl, {
     method: "PUT",
@@ -709,10 +578,4 @@ async function uploadFile(uploadUrl: string, file: File): Promise<Response> {
     },
   });
 }
-
-
-function useQueryState(arg0: string, arg1: { defaultValue: string }): [any, any] {
-  throw new Error("Function not implemented.")
-}
-// export default ReposeIMG;
 
