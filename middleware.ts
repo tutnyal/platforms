@@ -51,18 +51,6 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
-  if (hostname == "/login") {
-    const session = await getToken({ req });
-    if (!session && path !== "/login") {
-      return NextResponse.redirect(new URL("http://app.localhost:3000/login", req.url));
-    } else if (session && path == "http://app.localhost:3000/login") {
-      return NextResponse.redirect(new URL("http://app.localhost:3000", req.url));
-    }
-    return NextResponse.rewrite(
-      new URL(`app.localhost:3000/app${path === "/" ? "" : path}`, req.url),
-    );
-  }
-
   // special case for `vercel.pub` domain
   if (hostname === "vercel.pub") {
     return NextResponse.redirect(

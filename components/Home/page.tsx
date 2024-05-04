@@ -5,15 +5,6 @@ import "@/components/Home/home.css";
 import "@/components/Home/AInime-Home/home-v23.css";
 import "@/components/Home/AInime-Home/home-style12.css";
 import "@/components/Home/css/header-updated-v2.css";
-
-
-import { setupJquery, productCarousel, testimonialCarousel } from "../../lib/utils/jqueryCode";
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Swiper from 'swiper';
-import 'swiper/css';
-import $ from 'jquery';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { alignProperty } from "@mui/material/styles/cssUtils";
