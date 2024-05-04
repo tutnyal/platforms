@@ -45,7 +45,7 @@ import { notFound, redirect } from "next/navigation";
 import Editor from "@/components/editor";
 
 
-const Demo = () => {
+const Demo2 = () => {
  
   const [isTop, setIsTop] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -221,7 +221,7 @@ const Demo = () => {
     );
 }
 
-export default Demo;
+export default Demo2;
 
 function CharacterSheet2() {
   const [prompt, setPrompt] = useState("");

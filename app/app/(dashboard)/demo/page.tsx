@@ -72,21 +72,6 @@ const Demo = () => {
 </div>
 </div>;
     
-  //   const Problem = () => <div>
-  
-  
-  //   <div className="swiper-slide one">
-  //     <div className="tile-card">
-  //     <div className="row">
-  //       <ReposeIMG2/>                              
-  //      </div>
-                                
-  //     </div>
-  // </div>
-                                                  
-  
-  
-  // </div>;
   const Soultion = () => <div>
     
     <div className="swiper-slide two">
