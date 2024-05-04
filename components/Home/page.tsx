@@ -6,9 +6,7 @@ import "@/components/Home/AInime-Home/home-v23.css";
 import "@/components/Home/AInime-Home/home-style12.css";
 import "@/components/Home/css/header-updated-v2.css";
 import Link from 'next/link';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { alignProperty } from "@mui/material/styles/cssUtils";
-import dynamic from 'next/dynamic';
+
 
 
 const HomePage = () => {
@@ -20,76 +18,69 @@ const HomePage = () => {
     setActiveTab(tab);
   };
 
-   
-    const Problem = () => <div>
-  
-  
+    const Problem = () => <div>  
     <div className="swiper-slide one">
-      <div className="tile-card">
-          <div className="slider-row">
-              <div className="col-md-8">
-                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c561bd2b-4f8c-4014-8d8c-67d1327361eb/original=true/grid-0077-1635750043-square%20wander%20solid%20stripes%20voxel%20complex%20vertex%20order%20cube%20ray%20rectangle%20metallic%20beyond%20translucent%20odd%20malleable%20fissure%20mass.jpeg" alt="Training-and-learning" className="slider-graphic-img" />
-              </div>
-              <div className="col-md-8">
-                  <div >
-                      <h2>The Problem</h2><br />
-                      <p>Animators are overworked, underpaid, and exploited - even when the industry is booming.
-                          The unfair treatment has made it unsustainable of animators, it has already driven out great talents
-                          and at worst lead to death.
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-                                                  
-  
-  
-  </div>;
-  const Soultion = () => <div>
-    
-   
-    <div className="swiper-slide two">
-      <div className="tile-card">
-          <div className="slider-row">
-              <div className="col-md-8">
-                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b0eb04ec-0c81-4f83-a11d-21b698416188/original=true/2CA547A618F29E9E6ADE1882F27861B0BDDEC20D1DA8989D08DB5A5CFDAB41C0.jpeg" alt="Marketing-and-sales" className="slider-graphic-img" />
-              </div>
-              <div className="col-md-8">
-                  <div >
-                      <h2>Our Solution for<br /> Solo & Small Anime Studios</h2><br />
-                      <p>The solution is simple, but hard to implement: reducing production time, costs, and difficulty while empowering animators
-                          to monetize their intellectual property. </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-                                                  
-    
-    </div>;
-  const Creators = () => <div>
-    
-   
-    <div className="swiper-slide three">
-      <div className="tile-card">
-          <div className="slider-row">
-              <div className="col-md-4">
-                  <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f745265-4aae-425c-b0d1-86391af40159/original=true/00105-1100137840.jpeg" alt="Internal-communications" />
-              </div>
-              <div className="col-md-4">
-                  <div >
-                      <h2>You, the creators</h2><br />
-                      <p>We&apos;re a piece of the puzzle; you are the other half!​<br />
-                          Also, we&apos;ve got your back - Let us serve you and we will do big things together.
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-    
+    <div className="tile-card">
+        <div className="slider-row">
+            <div className="col-md-8">
+                <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c561bd2b-4f8c-4014-8d8c-67d1327361eb/original=true/grid-0077-1635750043-square%20wander%20solid%20stripes%20voxel%20complex%20vertex%20order%20cube%20ray%20rectangle%20metallic%20beyond%20translucent%20odd%20malleable%20fissure%20mass.jpeg" alt="Training-and-learning" className="slider-graphic-img" />
+            </div>
+            <div className="col-md-8">
+                <div >
+                    <h2>The Problem</h2><br />
+                    <p>Animators are overworked, underpaid, and exploited - even when the industry is booming.
+                        The unfair treatment has made it unsustainable of animators, it has already driven out great talents
+                        and at worst lead to death.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+    </div>;
+    const Soultion = () => <div>
+    <div className="swiper-slide two">
+        <div className="tile-card">
+            <div className="slider-row">
+                <div className="col-md-8">
+                    <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b0eb04ec-0c81-4f83-a11d-21b698416188/original=true/2CA547A618F29E9E6ADE1882F27861B0BDDEC20D1DA8989D08DB5A5CFDAB41C0.jpeg" alt="Marketing-and-sales" className="slider-graphic-img" />
+                </div>
+                <div className="col-md-8">
+                    <div >
+                        <h2>Our Solution for<br /> Solo & Small Anime Studios</h2><br />
+                        <p>The solution is simple, but hard to implement: reducing production time, costs, and difficulty while empowering animators
+                            to monetize their intellectual property. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                                    
+
+    </div>;
+    const Creators = () => <div>
+    <div className="swiper-slide three">
+        <div className="tile-card">
+            <div className="slider-row">
+                <div className="col-md-4">
+                    <img src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f745265-4aae-425c-b0d1-86391af40159/original=true/00105-1100137840.jpeg" alt="Internal-communications" />
+                </div>
+                <div className="col-md-4">
+                    <div >
+                        <h2>You, the creators</h2><br />
+                        <p>We&apos;re a piece of the puzzle; you are the other half!​<br />
+                            Also, we&apos;ve got your back - Let us serve you and we will do big things together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+   
+
     return (
       
         <div>
@@ -99,9 +90,11 @@ const HomePage = () => {
                     <div className="container1">
                         <div className="hero-section-content">
                             <h1>Create your own anime show today!</h1>
-                            <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios
-                                create shows and movies.</p>
-                            <Link className="rainbow-btn" href="/demo">Create for Free</Link>                           
+                            <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios create shows and movies.</p>
+                            {/* <Link className="rainbow-btn" href="/login" > Create for Free</Link>    */}
+                            <a href="https://app.ainime.me" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
+                            </a>
+                            
                         </div>
                         
                         <div className="show-mobile video-holder">
@@ -122,7 +115,7 @@ const HomePage = () => {
                             <a>
                                 <video id="hero-video-desktop" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline
                                     poster="#"
-                                    title="Make your first video with Animaker AI" style={{ borderRadius: '20px' }}>
+                                    title="Make your first video with ainime AI" style={{ borderRadius: '20px' }}>
                                     {/* <source src="https://www.animaker.com/Animaker-Home/new-assets/newhome-loop-video.mp4" type="video/mp4"  /> */}
                                     {/* <img className="desk-view video-placeholder hero-video" src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/bc37f501-4d02-41ee-96b4-d268028b8010/original=true/Animedetour.jpeg" alt="Internal-communications" /> */}
                                 </video>
@@ -161,9 +154,7 @@ const HomePage = () => {
                                                 <li className={activeTab === 'Problem' ? 'active' : ''} onClick={() => handleTabClick('Problem')}>The Problem</li>
                                                 <li className={activeTab === 'Soultion' ? 'active' : ''} onClick={() => handleTabClick('Soultion')}>Our Solution</li>
                                                 <li className={activeTab === 'Creators' ? 'active' : ''} onClick={() => handleTabClick('Creators')}>You, the creators</li>
-                                                {/* <li className="active" >The Problem</li>
-                                                <li>Our Solution </li>
-                                                <li>You, the creators</li> */}
+                                                
 
                                             </ul>
                                             
@@ -268,7 +259,9 @@ const HomePage = () => {
                             <div className="container1">
                                 <div className="first-video-content">
                                     <h1 >The world is waiting <br />for your first Anime!</h1>
-                                    <Link href="/demo" className="rainbow-btn">Create for Free</Link>
+                                    {/* <Link href="/demo2" className="rainbow-btn">Create for Free</Link> */}
+                                    <a href="https://app.ainime.me" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
+                                    </a>
                                 </div>
                             </div>
                         </section>

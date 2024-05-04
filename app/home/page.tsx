@@ -36,7 +36,7 @@ import HomePage from "@/components/Home/page";
 const App = () => {
   return (
     <div>
-      <Header /> 
+      {/* <Header />  */}
       <HomePage />
     </div>
     

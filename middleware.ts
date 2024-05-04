@@ -16,13 +16,20 @@ export const config = {
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
+  
 
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
+
+  console.log('req.header:', req.headers.get("host")!);
+
+  console.log('Next_Pub_URL:', `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
   let hostname = req.headers
     .get("host")!
     .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
+    
+  console.log('hostname:',hostname); 
+  // special case for Vercel preview deployment URLs  
 
-  // special case for Vercel preview deployment URLs
   if (
     hostname.includes("---") &&
     hostname.endsWith(`.${process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_SUFFIX}`)
@@ -32,6 +39,8 @@ export default async function middleware(req: NextRequest) {
     }`;
   }
 
+
+
   const searchParams = req.nextUrl.searchParams.toString();
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = `${url.pathname}${
@@ -39,7 +48,7 @@ export default async function middleware(req: NextRequest) {
   }`;
 
   // rewrites for app pages
-  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  if ((hostname ==  `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) ) {
     const session = await getToken({ req });
     if (!session && path !== "/login") {
       return NextResponse.redirect(new URL("/login", req.url));
@@ -52,7 +61,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   // special case for `vercel.pub` domain
-  if (hostname === "vercel.pub") {
+  if (hostname === "ainime.me") {
     return NextResponse.redirect(
       "/home",
     );
@@ -62,21 +71,21 @@ export default async function middleware(req: NextRequest) {
   // rewrite root application to `/home` folder
   if (
     hostname === "localhost:3000" ||
+    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN 
+  ) {
+    return NextResponse.rewrite(
+      new URL(`/home${path === "/" ? "" : path}`, req.url),
+    );
+  }
+
+  if (
+    hostname === "www.ainime.me" || "ainime.me" ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
     return NextResponse.rewrite(
       new URL(`/home${path === "/" ? "" : path}`, req.url),
     );
   }
-   // rewrite root application to `/home` folder
-  //  if (
-  //   hostname === "localhost:3000" ||
-  //   hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
-  // ) {
-  //   return NextResponse.rewrite(
-  //     new URL(`/demo${path === "/demo" ? "" : path}`, req.url),
-  //   );
-  // }
 
   // rewrite everything else to `/[domain]/[slug] dynamic route
   return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));

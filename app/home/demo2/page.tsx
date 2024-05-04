@@ -36,28 +36,20 @@ import { useEffect, useState } from "react";
 
 import { ImageGenerationResult } from "@/components/ImageGenerationResult";
 import { ImageGenerationResult_sheets } from "@/components/ImageGenerationResult_sheets";
-import LoginButton from "../login/login-button";
-import { signIn } from "next-auth/react";
-import LoadingDots from "@/components/icons/loading-dots";
-import { useSearchParams } from "next/navigation";
-import { toast } from "sonner";
-
-import Link from 'next/link';
-import Swiper from 'swiper';
-import 'swiper/css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import $ from 'jquery';
-import { AlignCenter } from "lucide-react";
 
 import Header from '@/components/Header'; // Import the NavMenu component
 import { DemoClosedNotice } from "@/components/DemoClosedNotice"
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
+import { notFound, redirect } from "next/navigation";
+import Editor from "@/components/editor";
 
 
 const Demo = () => {
-    const [isTop, setIsTop] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState('Problem');
+ 
+  const [isTop, setIsTop] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('Problem');
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -491,7 +483,7 @@ function ReposeIMG2(): JSX.Element {
                                                 style={{
                                                     width: '100%', height: !isMediumScreen ? "420px" : "300px", borderRadius: "20px"
                                                 }}
-                                                loading="lazy"
+                                                loading="lazy" alt=""
                                             /> :
                                                 <video autoPlay muted loop playsInline poster="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/5c571840-be6f-4610-ab72-a5e76df68c01/original=true/1F762D5F81BAA22944D2C2DE4234A359DAC74C7302722E779A710C1E02A72559.jpeg" title="Character Builder" style={{ borderRadius: '20px' }}>
                                                     <source src="" type="video/mp4" />
@@ -528,6 +520,7 @@ function ReposeIMG2(): JSX.Element {
                                                     width: '100%', height: !isMediumScreen ? "420px" : "300px", borderRadius: "20px"
                                                 }}
                                                 loading="lazy"
+                                                alt=""
                                             /> :
                                                 <video autoPlay muted loop playsInline poster="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0f0456d3-a700-4561-a7b6-246e32140b00/original=true/E3597C6E050D3C523B9788C0172F0BE029F458EE86394D0863C44058ED103FB6.jpeg" title="Character Builder" style={{ borderRadius: '20px' }}>
                                                     <source src="" type="video/mp4" />

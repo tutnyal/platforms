@@ -4,7 +4,7 @@
 module.exports = {
   experimental: {
     serverActions: {
-      allowedOrigins: ["app.localhost:3000"],
+      allowedOrigins: ["app.https://platforms-tutnyals-projects.vercel.app"],
     },
   },
   images: {

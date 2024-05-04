@@ -1,10 +1,8 @@
 "use client";
 
 export function DemoClosedNotice() {
-    return <div className='p-2 bg-primary-foreground rounded-md'>
-        This realtime demo is now closed, if you interested in the preview, please hang on 
-        {/* <a href='https://twitter.com/BennyKokMusic/status/1764110674295493074' className='underline'>this tweet</a>  */}
-
+    return <div >
+        
     <div className="swiper-slide two">
       <div className="tile-card">
           <div className="slider-row">

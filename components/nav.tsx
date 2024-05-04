@@ -25,41 +25,28 @@ import { getSiteFromPostId } from "@/lib/actions";
 import Image from "next/image";
 
 const externalLinks = [
+
   {
     name: "Read announcement",
-    href: "https://vercel.com/blog/platforms-starter-kit",
+    //   href: "https://vercel.com/blog/platforms-starter-kit",
+    href: "#",
     icon: <Megaphone width={18} />,
   },
-  {
-    name: "Star on GitHub",
-    href: "https://github.com/vercel/platforms",
-    icon: <Github width={18} />,
-  },
+
   {
     name: "Read the guide",
-    href: "https://vercel.com/guides/nextjs-multi-tenant-application",
+     //   href: "https://github.com/vercel/platforms",
+    href: "#",
     icon: <FileCode width={18} />,
   },
+
   {
     name: "View demo site",
-    href: "https://demo.vercel.pub",
+    // href: "https://demo.vercel.pub",
+    href: "#",
     icon: <Layout width={18} />,
   },
-  {
-    name: "Deploy your own",
-    href: "https://vercel.com/templates/next.js/platforms-starter-kit",
-    icon: (
-      <svg
-        width={18}
-        viewBox="0 0 76 76"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="py-1 text-black dark:text-white"
-      >
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor" />
-      </svg>
-    ),
-  },
+  
 ];
 
 export default function Nav({ children }: { children: ReactNode }) {
@@ -132,6 +119,12 @@ export default function Nav({ children }: { children: ReactNode }) {
         icon: <LayoutDashboard width={18} />,
       },
       {
+        name: "Demo",
+        href: "/demo",
+        isActive: segments[0] === "demo",
+        icon: <Layout width={18} />,
+      },
+      {
         name: "Sites",
         href: "/sites",
         isActive: segments[0] === "sites",
@@ -143,6 +136,7 @@ export default function Nav({ children }: { children: ReactNode }) {
         isActive: segments[0] === "settings",
         icon: <Settings width={18} />,
       },
+      
     ];
   }, [segments, id, siteId]);
 
@@ -176,7 +170,7 @@ export default function Nav({ children }: { children: ReactNode }) {
         <div className="grid gap-2">
           <div className="flex items-center space-x-2 rounded-lg px-2 py-1.5">
             <a
-              href="https://vercel.com/templates/next.js/platforms-starter-kit"
+              href="https://ainime.me"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-1.5 hover:bg-stone-200 dark:hover:bg-stone-700"
