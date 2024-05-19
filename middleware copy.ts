@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-import {
-  clerkMiddleware,
-  createRouteMatcher
-} from '@clerk/nextjs/server';
 
 export const config = {
   matcher: [
@@ -14,29 +10,25 @@ export const config = {
      * 3. /_static (inside /public)
      * 4. all root files inside /public (e.g. /favicon.ico)
      */
-    
-    // "/((?!.+.[w]+$|_next).*)", "/", "/(api|trpc)(.*)",
     "/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)",
   ],
 };
 
-
-export default async function Middleware(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
   
 
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
 
   console.log('req.header:', req.headers.get("host")!);
+
+  console.log('Next_Pub_URL:', `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
   let hostname = req.headers
     .get("host")!
     .replace(".localhost:3000", `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
     
-
-  // special case for Vercel preview deployment URLs
-  console.log(hostname); 
-  console.log('Next_Pub_URL:', `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`);
-  
+  console.log('hostname:',hostname); 
+  // special case for Vercel preview deployment URLs  
 
   if (
     hostname.includes("---") &&
@@ -47,23 +39,14 @@ export default async function Middleware(req: NextRequest) {
     }`;
   }
 
-  // if (
-  //   hostname.includes(".vercel.app") ||
-  //   hostname.endsWith(`.${process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_SUFFIX}`)
-  // ) {
-  //   hostname ="localhost:300";
-  // }
-
   const searchParams = req.nextUrl.searchParams.toString();
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = `${url.pathname}${
     searchParams.length > 0 ? `?${searchParams}` : ""
   }`;
 
-  
-
   // rewrites for app pages
-  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  if (hostname ==  `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)  {
     const session = await getToken({ req });
     if (!session && path !== "/login") {
       return NextResponse.redirect(new URL("/login", req.url));
@@ -74,7 +57,6 @@ export default async function Middleware(req: NextRequest) {
       new URL(`/app${path === "/" ? "" : path}`, req.url),
     );
   }
-
 
   // special case for `vercel.pub` domain
   if (hostname === "ainime.me") {
@@ -95,7 +77,7 @@ export default async function Middleware(req: NextRequest) {
   }
 
   if (
-    hostname === "www.ainime.me" ||"ainime.me" ||
+    hostname === "www.ainime.me" || "ainime.me" ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
     return NextResponse.rewrite(

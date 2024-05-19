@@ -92,8 +92,8 @@ const HomePage = () => {
                             <h1>Create your own anime show today!</h1>
                             <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios create shows and movies.</p>
                             {/* <Link className="rainbow-btn" href="/login" > Create for Free</Link>    */}
-                            {/* <a href="https://app.ainime.me" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
-                            </a> */}
+                            <a href="https://app.ainime.me/demo" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
+                            </a>
                             
                         </div>
                         
@@ -260,8 +260,8 @@ const HomePage = () => {
                                 <div className="first-video-content">
                                     <h1 >The world is waiting <br />for your first Anime!</h1>
                                     {/* <Link href="/demo2" className="rainbow-btn">Create for Free</Link> */}
-                                    {/* <a href="https://app.ainime.me" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
-                                    </a> */}
+                                    <a href="https://app.ainime.me" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
+                                    </a>
                                 </div>
                             </div>
                         </section>

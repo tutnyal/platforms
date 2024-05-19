@@ -14,7 +14,6 @@ import {
   Settings,
   FileCode,
   Github,
-  Twitter,
 } from "lucide-react";
 import {
   useParams,
@@ -27,16 +26,6 @@ import Image from "next/image";
 
 const externalLinks = [
 
-  {
-    name: "X/Twitter",    
-    href: "https://x.com/KingNyalTut",
-    icon: <Twitter width={18} />,
-  },
-  {
-    name: "Github",    
-    href: "https://github.com/tutnyal",
-    icon: <Github width={18} />,
-  },
   {
     name: "Read announcement",
     //   href: "https://vercel.com/blog/platforms-starter-kit",

@@ -4,12 +4,15 @@ import { Analytics } from "@vercel/analytics/react";
 import { Providers } from "./providers";
 import { Metadata } from "next";
 import { cn } from "@/lib/utils";
+// import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+
 
 const title =
   "Ainime Platforms Starter Kit – Make Animated Videos with AI for Free.";
 const description =
   "AInimate is an online AI animation generator and video maker that brings studio quality video content within everyone's reach. Animated Videos, Done Right!";
-const image = "https://vercel.pub/thumbnail.png";
+const image = "";
 
 export const metadata: Metadata = {
   title,
@@ -36,13 +39,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    
+    <Providers>
     <html lang="en" suppressHydrationWarning>
       <body className={cn(cal.variable, inter.variable)}>
-        <Providers>
+        
+          <main>
           {children}
           <Analytics />
-        </Providers>
+          </main>    
+          
+        
+        
+          {/* {children}
+          <Analytics /> */}
+        
       </body>
     </html>
+    </Providers>
+    
   );
 }

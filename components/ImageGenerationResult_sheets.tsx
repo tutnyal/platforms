@@ -29,6 +29,7 @@ export function ImageGenerationResult_sheets({
         if (res && res.status === "success") {
           console.log("Full API response:", res);
           console.log(res.outputs[1]?.data);
+          console.log(res.outputs[0]?.data);
           // setImage("https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/5c571840-be6f-4610-ab72-a5e76df68c01/original=true/1F762D5F81BAA22944D2C2DE4234A359DAC74C7302722E779A710C1E02A72559.jpeg"); // Replace with a real URL
           console.log(res.outputs[0]?.data?.images?.[0]?.url);
           setImage(res.outputs[0]?.data?.images?.[0].url ?? "");

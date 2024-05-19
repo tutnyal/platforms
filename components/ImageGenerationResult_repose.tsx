@@ -3,10 +3,10 @@ import { LoadingIcon } from "@/components/LoadingIcon";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { checkStatus } from "../app/server/generate";
+import { checkStatus } from "@/app/server/generate";
 import { useEffect, useState } from "react";
 
-export function ImageGenerationResult({
+export function ImageGenerationResult_repose({
   runId,
   className
 }: { runId: string } & React.ComponentProps<"div">) {
@@ -29,8 +29,6 @@ export function ImageGenerationResult({
         if (res && res.status === "success") {
           console.log(res.outputs[0]?.data);
           console.log(res.outputs[1]?.data);
-          // setImage("https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/5c571840-be6f-4610-ab72-a5e76df68c01/original=true/1F762D5F81BAA22944D2C2DE4234A359DAC74C7302722E779A710C1E02A72559.jpeg"); // Replace with a real URL
-          console.log(res.outputs[1]?.data?.images?.[0]?.url);
           setImage(res.outputs[1]?.data?.images?.[0].url ?? "");
           setLoading(false);
           clearInterval(interval);
