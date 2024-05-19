@@ -4,22 +4,26 @@ import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@c
 
 
 export const metadata: Metadata = {
-  title: "Login | ainime Platforms Starter Kit",
+  title: "Login | ainime: Platform to create your own manga & anime",
 };
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <ClerkProvider>
-    <div className="flex m
-    in-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <body>
-         
-          <main>
-            {children}
-          </main>
-        </body>
-      {/* {children} */}
+    <div className="flex min-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
+      {children}
     </div>
-    </ClerkProvider>
+
+
+  //   <ClerkProvider>
+  //   <div className="flex m
+  //   in-h-screen flex-col justify-center py-12 sm:px-6 lg:px-8">
+  //     <body>
+  //       {children}
+  //       <main>
+  //         {children}
+  //       </main>
+  //     </body>      
+  //   </div>
+  //   </ClerkProvider>
   );
 }

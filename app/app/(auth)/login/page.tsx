@@ -35,7 +35,9 @@ export default function LoginPage() {
           }
         >
           <LoginButton />
+
           {/* <GoogleLoginButton /> */}
+          
         </Suspense>
       </div>
     </div>

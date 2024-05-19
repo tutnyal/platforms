@@ -39,8 +39,25 @@ import { WebsocketDemo3 } from "@/components/WebsocketDemo3";
 import { parseAsInteger, parseAsIsoDateTime, useQueryState } from "next-usequerystate";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ImageGenerationResult_sheets } from "@/components/ImageGenerationResult_sheets";
+import { getSession } from "@/lib/auth";
+import { redirect } from "next/navigation";
+
+// async function chk_login() {  
+//   return(
+//     const session = await getSession();
+//     if (!session) {
+//       redirect("/login");
+//     }
+//   );
+// }
 
 export default function Page() {
+ 
+  const session =  getSession();
+  if (!session) {
+    redirect("/login");
+  }
+
   const [seletedTab, setSelectedTab] = useQueryState("demo", {
     defaultValue: "txt2img",
   });
