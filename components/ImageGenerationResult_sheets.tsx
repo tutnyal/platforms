@@ -3,7 +3,7 @@ import { LoadingIcon } from "@/components/LoadingIcon";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { checkStatus } from "../app/server/generate";
+import { checkStatus } from "../app/server/comfy_generate";
 import { useEffect, useState } from "react";
 
 export function ImageGenerationResult_sheets({

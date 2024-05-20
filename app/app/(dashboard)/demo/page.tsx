@@ -14,7 +14,7 @@ import {
   generate_attention_mask,
   generate_repose_img,
   getUploadUrl,
-} from "@/app/server/generate";
+} from "@/app/server/comfy_generate";
 import { VscGithubAlt } from "react-icons/vsc";
 import { FaDiscord } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -42,21 +42,10 @@ import { ImageGenerationResult_sheets } from "@/components/ImageGenerationResult
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-// async function chk_login() {  
-//   return(
-//     const session = await getSession();
-//     if (!session) {
-//       redirect("/login");
-//     }
-//   );
-// }
 
 export default function Page() {
  
-  const session =  getSession();
-  if (!session) {
-    redirect("/login");
-  }
+
 
   const [seletedTab, setSelectedTab] = useQueryState("demo", {
     defaultValue: "txt2img",

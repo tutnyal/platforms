@@ -4,20 +4,17 @@ import { Analytics } from "@vercel/analytics/react";
 import { Providers } from "./providers";
 import { Metadata } from "next";
 import { cn } from "@/lib/utils";
-// import { ClerkProvider } from '@clerk/nextjs'
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-
 
 const title =
-  "Ainime Platforms Starter Kit – Make Animated Videos with AI for Free.";
+  "Platforms Starter Kit – The all-in-one starter kit for building multi-tenant applications.";
 const description =
-  "AInimate is an online AI animation generator and video maker that brings studio quality video content within everyone's reach. Animated Videos, Done Right!";
-const image = "";
+  "The Platforms Starter Kit is a full-stack Next.js app with multi-tenancy and custom domain support. Built with Next.js App Router, Vercel Postgres and the Vercel Domains API.";
+const image = "https://vercel.pub/thumbnail.png";
 
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://www.ainime.io/favicon.ico"],
+  icons: ["https://vercel.pub/favicon.ico"],
   openGraph: {
     title,
     description,
@@ -28,9 +25,9 @@ export const metadata: Metadata = {
     title,
     description,
     images: [image],
-    creator: "@KingNyalTut",
+    creator: "@vercel",
   },
-  metadataBase: new URL("https://www.ainime.io/"),
+  metadataBase: new URL("https://vercel.pub"),
 };
 
 export default function RootLayout({
@@ -39,24 +36,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    
-    <Providers>
     <html lang="en" suppressHydrationWarning>
       <body className={cn(cal.variable, inter.variable)}>
-        
-          <main>
+        <Providers>
           {children}
           <Analytics />
-          </main>    
-          
-        
-        
-          {/* {children}
-          <Analytics /> */}
-        
+        </Providers>
       </body>
     </html>
-    </Providers>
-    
   );
 }

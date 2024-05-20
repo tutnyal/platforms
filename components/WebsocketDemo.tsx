@@ -1,6 +1,6 @@
 "use client"
 
-import { getWebsocketUrl } from '../app/server/generate'
+import { getWebsocketUrl } from '../app/server/comfy_generate'
 import { useEffect, useRef, useState } from 'react'
 import { useDebounce } from "use-debounce";
 import { Input } from './ui/input';
