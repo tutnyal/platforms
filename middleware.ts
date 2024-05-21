@@ -74,7 +74,7 @@ export default async function Middleware(req: NextRequest) {
 
 
   // special case for `vercel.pub` domain
-  if (hostname === "ainime.me") {
+  if (hostname === ".ainime.me") {
     return NextResponse.redirect(
       "/home",
     );
