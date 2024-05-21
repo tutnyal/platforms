@@ -92,7 +92,7 @@ export default async function Middleware(req: NextRequest) {
   }
 
   if (
-    hostname === "www.ainime.me" ||"ainime.me" ||
+    hostname === "ainime.me" ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
     return NextResponse.rewrite(
