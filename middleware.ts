@@ -59,18 +59,33 @@ export default clerkMiddleware((auth, req) => {
     return NextResponse.rewrite(new URL(`/app${path === "/" ? "" : path}`, req.url));
   }
 
-  // rewrite root application to `/home` folder and Get hostname of request (e.g. www.ainime.me, ainime.me, demo.localhost:3000)
-  console.log('hostanme2:', hostname);
+  // special case for `vercel.pub` domain
+  if (hostname === "ainime.me") {
+    return NextResponse.redirect(
+      "/home",
+    );
+  }
+  // https://vercel.com/blog/platforms-starter-kit
+  
+  // rewrite root application to `/home` folder
   if (
-    
-    hostname === "www.ainime.me" ||
-    hostname === "ainime.me" ||
-    hostname === "localhost:3000" || 
-    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN) {
-    return NextResponse.rewrite(new URL(`/home${path === "/" ? "" : path}`, req.url));
+    hostname === "localhost:3000" ||
+    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN 
+  ) {
+    return NextResponse.rewrite(
+      new URL(`/home${path === "/" ? "" : path}`, req.url),
+    );
+  }
+
+  if (
+    hostname === "www.ainime.me" ||"ainime.me" ||
+    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
+  ) {
+    return NextResponse.rewrite(
+      new URL(`/home${path === "/" ? "" : path}`, req.url),
+    );
   }
 
   // rewrite everything else to `/[domain]/[slug] dynamic route
   return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
-});
-
+}
