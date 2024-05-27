@@ -70,6 +70,7 @@ export default function Nav({ children }: { children: ReactNode }) {
     if (segments[0] === "post" && id) {
       getSiteFromPostId(id).then((id) => {
         setSiteId(id);
+        console.log(setSiteId(id));
       });
     }
   }, [segments, id]);

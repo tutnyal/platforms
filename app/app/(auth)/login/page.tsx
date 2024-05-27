@@ -1,6 +1,8 @@
 import Image from "next/image";
-import LoginButton from "./login-button";
+// import LoginButton from "./login-button";
 import { Suspense } from "react";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+
 
 export default function LoginPage() {
   return (
@@ -13,9 +15,9 @@ export default function LoginPage() {
         src="/logo.png"
       />
       <h1 className="mt-6 text-center font-cal text-3xl dark:text-white">
-        Ainime: Platform to create your own manga or anime.
+        Platforms Starter Kit
       </h1>
-      {/* <p className="mt-2 text-center text-sm text-stone-600 dark:text-stone-400">
+      <p className="mt-2 text-center text-sm text-stone-600 dark:text-stone-400">
         Build multi-tenant applications with custom domains. <br />
         <a
           className="font-medium text-black hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100"
@@ -25,7 +27,7 @@ export default function LoginPage() {
         >
           Read the announcement.
         </a>
-      </p> */}
+      </p>
 
       <div className="mx-auto mt-4 w-11/12 max-w-xs sm:w-full">
         <Suspense
@@ -33,7 +35,34 @@ export default function LoginPage() {
             <div className="my-2 h-10 w-full rounded-md border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-800" />
           }
         >
-          <LoginButton />
+          <div
+          className={`${
+            
+            "bg-white hover:bg-stone-50 active:bg-stone-100 dark:bg-black dark:hover:border-white dark:hover:bg-black"
+          } group my-2 flex h-10 w-full items-center justify-center space-x-2 rounded-md border border-stone-200 transition-colors duration-75 focus:outline-none dark:border-stone-700`}
+        >
+          
+          
+          {/* <LoginButton /> */}
+          {/* <SignInButton fallbackRedirectUrl="/dashboard" signUpFallbackRedirectUrl="/onboarding" >  */}
+            <SignInButton > 
+              Sign in
+            </SignInButton>
+            </div>
+
+            <div
+          className={`${
+            
+            "bg-white hover:bg-stone-50 active:bg-stone-100 dark:bg-black dark:hover:border-white dark:hover:bg-black"
+          } group my-2 flex h-10 w-full items-center justify-center space-x-2 rounded-md border border-stone-200 transition-colors duration-75 focus:outline-none dark:border-stone-700`}
+        >
+
+            {/* <SignUpButton signInFallbackRedirectUrl="/dashboard" fallbackRedirectUrl="/onboarding"> */}
+            <SignUpButton >
+              Sign up
+            </SignUpButton>
+          </div>
+
         </Suspense>
       </div>
     </div>

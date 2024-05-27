@@ -15,8 +15,6 @@ import {
   generate_repose_img,
   getUploadUrl,
 } from "@/app/server/comfy_generate";
-import { VscGithubAlt } from "react-icons/vsc";
-import { FaDiscord } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 import {
@@ -39,8 +37,6 @@ import { WebsocketDemo3 } from "@/components/WebsocketDemo3";
 import { parseAsInteger, parseAsIsoDateTime, useQueryState } from "next-usequerystate";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ImageGenerationResult_sheets } from "@/components/ImageGenerationResult_sheets";
-import { getSession } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 
 export default function Page() {

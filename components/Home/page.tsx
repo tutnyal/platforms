@@ -81,7 +81,7 @@ const HomePage = () => {
    
 
     return (
-      
+              
         <div>
             <div className="new_home_section">
                 {/* Hero Banner section */}
@@ -90,17 +90,17 @@ const HomePage = () => {
                         <div className="hero-section-content">
                             <h1>Create your own anime show today!</h1>
                             <p>A tool that leverages AI and web3 technology to help solo animators <br /> & small anime studios create shows and movies.</p>
-                            {/* <Link className="rainbow-btn" href="/login" > Create for Free</Link>    */}
+                            {/* <Link className="rainbow-btn" href="/" > Create for Free</Link>    */}
                             <a href="https://app.ainime.me/demo" target="_blank" rel="noopener noreferrer" className="rainbow-btn">Create for Free                            
                             </a>
                             
                         </div>
                         
-                        <div className="show-mobile video-holder">
+                        {/* <div className="show-mobile video-holder">
                             <video id="hero-video-mobile" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline poster="" title="Make your first video with AInime AI" style={{ borderRadius: '20px' }}>
                                 <source src="" type="video/mp4" />
                             </video>
-                        </div>
+                        </div> */}
 
                     </div>
                 </section>
@@ -111,14 +111,14 @@ const HomePage = () => {
                         
                         {/* Video section */}
                         <div className="hide-mobile video-holder">
-                            <a>
+                            {/* <a>
                                 <video id="hero-video-desktop" className="desk-view video-placeholder hero-video" autoPlay muted loop playsInline
                                     poster="#"
-                                    title="Make your first video with ainime AI" style={{ borderRadius: '20px' }}>
+                                    title="Make your first video with ainime AI" style={{ borderRadius: '20px' }}> */}
                                     {/* <source src="https://www.animaker.com/Animaker-Home/new-assets/newhome-loop-video.mp4" type="video/mp4"  /> */}
                                     {/* <img className="desk-view video-placeholder hero-video" src="https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/bc37f501-4d02-41ee-96b4-d268028b8010/original=true/Animedetour.jpeg" alt="Internal-communications" /> */}
-                                </video>
-                            </a>
+                                {/* </video>
+                            </a> */}
                         </div>
 
                         {/* Awards Section */}
@@ -142,11 +142,7 @@ const HomePage = () => {
 
                                     <div className="row" >
                                         <div className="col-md-8">
-                                            <div className="show-mobile">
-                                                <div id="prod-prev" className="icon-left-arrow">
-                                                    <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt=""  />
-                                                </div>
-                                            </div>
+                                            
                                             
                                             <ul id="prod-container1" className="blog-head">
                                                 
@@ -157,11 +153,7 @@ const HomePage = () => {
 
                                             </ul>
                                             
-                                            <div id="prod-next" className="show-mobile">
-                                                <div className="icon-right-arrow">
-                                                    <img src="https://www.animaker.com/Animaker-Home/new-assets/product-icon-arrow.svg" alt="" className="slider-arrow" />
-                                                </div>
-                                            </div>
+                    
                                         </div>
                                     </div>
                                     

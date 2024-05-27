@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import { getSession } from "@/lib/auth";
+// import { getSession } from "@/lib/auth";
+import { auth, currentUser } from "@clerk/nextjs/server";
+
 import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import SiteSettingsNav from "./nav";
@@ -11,8 +13,11 @@ export default async function SiteAnalyticsLayout({
   params: { id: string };
   children: ReactNode;
 }) {
-  const session = await getSession();
-  if (!session) {
+  // Get the userId from auth() -- if null, the user is not signed in
+  const user = await currentUser()
+
+  // const session = await getSession();
+  if (!user) {
     redirect("/login");
   }
   const data = await prisma.site.findUnique({
@@ -20,8 +25,10 @@ export default async function SiteAnalyticsLayout({
       id: decodeURIComponent(params.id),
     },
   });
+  if(data){console.log(data.userId);}
 
-  if (!data || data.userId !== session.user.id) {
+  if (!data || data.userId !== user.id) {
+    console.log("Here");
     notFound();
   }
 

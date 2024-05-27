@@ -11,6 +11,7 @@ import va from "@vercel/analytics";
 import { useEffect, useState } from "react";
 
 export default function CreateSiteModal() {
+  console.log("Reached Create Site Modal code");
   const router = useRouter();
   const modal = useModal();
 
@@ -35,6 +36,7 @@ export default function CreateSiteModal() {
       action={async (data: FormData) =>
         createSite(data).then((res: any) => {
           if (res.error) {
+            console.log("there is an error in createSiteModel");
             toast.error(res.error);
           } else {
             va.track("Created Site");
@@ -58,6 +60,7 @@ export default function CreateSiteModal() {
           >
             Site Name
           </label>
+
           <input
             name="name"
             type="text"
@@ -91,9 +94,11 @@ export default function CreateSiteModal() {
               required
               className="w-full rounded-l-lg border border-stone-200 bg-stone-50 px-4 py-2 text-sm text-stone-600 placeholder:text-stone-400 focus:border-black focus:outline-none focus:ring-black dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700 dark:focus:ring-white"
             />
+
             <div className="flex items-center rounded-r-lg border border-l-0 border-stone-200 bg-stone-100 px-3 text-sm dark:border-stone-600 dark:bg-stone-800 dark:text-stone-400">
               .{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             </div>
+
           </div>
         </div>
 
@@ -113,6 +118,7 @@ export default function CreateSiteModal() {
             rows={3}
             className="w-full rounded-md border border-stone-200 bg-stone-50 px-4 py-2 text-sm text-stone-600 placeholder:text-stone-400 focus:border-black  focus:outline-none focus:ring-black dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700 dark:focus:ring-white"
           />
+
         </div>
       </div>
       <div className="flex items-center justify-end rounded-b-lg border-t border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800 md:px-10">

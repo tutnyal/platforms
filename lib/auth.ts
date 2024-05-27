@@ -1,78 +1,132 @@
-import { getServerSession, type NextAuthOptions } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
+// import { getServerSession, type NextAuthOptions } from "next-auth";
+// import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
+// Get the userId from auth() -- if null, the user is not signed in
+// const user = await currentUser()
 
-export const authOptions: NextAuthOptions = {
-  providers: [
-    GitHubProvider({
-      clientId: process.env.AUTH_GITHUB_ID as string,
-      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
-      profile(profile) {
-        return {
-          id: profile.id.toString(),
-          name: profile.name || profile.login,
-          gh_username: profile.login,
-          email: profile.email,
-          image: profile.avatar_url,
-        };
-      },
-    }),
-  ],
-  pages: {
-    signIn: `/login`,
-    verifyRequest: `/login`,
-    error: "/login", // Error code passed in query string as ?error=
-  },
-  adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
-  cookies: {
-    sessionToken: {
-      name: `${VERCEL_DEPLOYMENT ? "__Secure-" : ""}next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: VERCEL_DEPLOYMENT
-          ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-          : undefined,
-        secure: VERCEL_DEPLOYMENT,
-      },
-    },
-  },
-  callbacks: {
-    jwt: async ({ token, user }) => {
-      if (user) {
-        token.user = user;
-      }
-      return token;
-    },
-    session: async ({ session, token }) => {
-      session.user = {
-        ...session.user,
-        // @ts-expect-error
-        id: token.sub,
-        // @ts-expect-error
-        username: token?.user?.username || token?.user?.gh_username,
-      };
-      return session;
-    },
-  },
-};
+// if (!user) {
+//   redirect("/login");
+// }
+// export const authOptions = {
+//   user: {
+//     id: user.id,
+//       name: user.fullName || user.username,
+//       username: user.username,
+//       email: user.emailAddresses[0]?.emailAddress,
+//       image: user.imageUrl,
+//   },
+//   // [
+//   //   GitHubProvider({
+//   //     clientId: process.env.AUTH_GITHUB_ID as string,
+//   //     clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+//   //     profile(profile) {
+//   //       return {
+//   //         id: profile.id.toString(),
+//   //         name: profile.name || profile.login,
+//   //         gh_username: profile.login,
+//   //         email: profile.email,
+//   //         image: profile.avatar_url,
+//   //       };
+//   //     },
+//   //   }),     
+//   // ],
+//   pages: {
+//     signIn: `/login`,
+//     verifyRequest: `/login`,
+//     error: "/login", // Error code passed in query string as ?error=
+//   },
+//   adapter: PrismaAdapter(prisma),
+//   session: { strategy: "jwt" },
+//   cookies: {
+//     sessionToken: {
+//       name: `${VERCEL_DEPLOYMENT ? "__Secure-" : ""}next-auth.session-token`,
+//       options: {
+//         httpOnly: true,
+//         sameSite: "lax",
+//         path: "/",
+//         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
+//         domain: VERCEL_DEPLOYMENT
+//           ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+//           : undefined,
+//         secure: VERCEL_DEPLOYMENT,
+//       },
+//     },
+//   },
+//   callbacks: {
+//     jwt: async ({ token, user }) => {
+//       if (user) {
+//         token.user = user;
+//       }
+//       return token;
+//     },
+//     session: async ({ session, token }) => {
+//       session.user = {
+//         ...session.user,
+//         // @ts-expect-error
+//         id: token.sub,
+//         // @ts-expect-error
+//         username: token?.user?.username || token?.user?.gh_username,
+//       };
+//       return session;
+//     },
+//   },
+//   debug: true,
+// };
 
-export function getSession() {
-  return getServerSession(authOptions) as Promise<{
+
+
+
+export async function getSession() {
+   // Get the userId from auth() -- if null, the user is not signed in
+   const user = await currentUser()
+
+   if (!user) {
+     redirect("/login");
+   }
+
+  // Map Clerk user to your Prisma User model fields
+  const prismaUser = await prisma.user.upsert({
+    where: { id: user.id },
+    update: {
+      name: user.fullName || user.username,
+      username: user.username,
+      email: user.emailAddresses[0]?.emailAddress,
+      image: user.imageUrl,
+    },
+    create: {
+      id: user.id,
+      name: user.fullName || user.username,
+      username: user.username,
+      email: user.emailAddresses[0]?.emailAddress,
+      image: user.imageUrl,
+    },
+  });
+  return {
     user: {
-      id: string;
-      name: string;
-      username: string;
-      email: string;
-      image: string;
-    };
-  } | null>;
+      id: prismaUser.id,
+      name: prismaUser.name,
+      username: prismaUser.username,
+      email: prismaUser.email,
+      image: prismaUser.image,
+    },
+  };
+
+  //  return {
+  //   user: {
+  //     id: user.id,
+  //     name: user.fullName || user.username,
+  //     username: user.username,
+  //     email: user.emailAddresses[0].emailAddress,
+  //     image: user.imageUrl,
+  //   },
+  // };
+   
+  
 }
 
 export function withSiteAuth(action: any) {
